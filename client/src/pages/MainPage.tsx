@@ -1,9 +1,10 @@
 import React from 'react';
+import MainPageSearchSection from '../modules/MainPage/MainPageSearchSection';
 
 interface MainPageProps {}
 
 const MainPage = (props: MainPageProps) => {
-	return <div>main page</div>;
+	return <MainPageSearchSection />;
 };
 
 export default MainPage;

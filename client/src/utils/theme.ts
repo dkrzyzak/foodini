@@ -5,7 +5,7 @@ const defaultTheme: DefaultTheme = {
 		primary: '#FF0000',
 		secondary: '#CA3433',
 		accent: '#ED2647',
-		primaryDark: '#282c34',
+		primaryDark: '#1a1616',
 	},
 };
 
