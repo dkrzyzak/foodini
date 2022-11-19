@@ -20,7 +20,7 @@ const Header = (props: HeaderProps) => {
 				<P.LogoMenuItem as={NavLink} to='/'>
 					<img src={logo} alt='logo' />
 				</P.LogoMenuItem>
-				<Menu.Item
+				{/* <Menu.Item
 					name='messages'
 					//  active={activeItem === 'messages'}
 					//  onClick={this.handleItemClick}
@@ -29,17 +29,18 @@ const Header = (props: HeaderProps) => {
 					name='friends'
 					//  active={activeItem === 'friends'}
 					//  onClick={this.handleItemClick}
-				/>
+				/> */}
 				<Menu.Menu position='right'>
 					<Menu.Item>
-						<Input icon='search' placeholder='Search...' />
+						<Input icon='search' placeholder='Cipa cyce...' />
 					</Menu.Item>
 					<Menu.Item
-						name='login'
 						onClick={onLoginClick}
 						// active={activeItem === 'logout'}
 						// onClick={this.handleItemClick}
-					/>
+					>
+						Zaloguj się!
+					</Menu.Item>
 				</Menu.Menu>
 			</P.Menu>
 		</P.Wrapper>

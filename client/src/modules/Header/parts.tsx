@@ -6,6 +6,9 @@ export const Wrapper = styled.header`
 	height: 100px;
 	position: sticky;
 	top: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 
 	.item {
 		color: white !important;
@@ -13,13 +16,13 @@ export const Wrapper = styled.header`
 `;
 
 export const Menu = styled(MenuBase)`
-	height: 80px;
-	padding: 10px 6px;
+	height: 90px;
+	padding: 10px 20px;
 `;
 
 export const LogoMenuItem = styled(MenuBase.Item)`
 	width: 100px;
-	height: 60px;
+	height: 70px;
 
 	img {
 		width: 100%;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Input } from 'semantic-ui-react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import * as P from './parts';
 import { Media } from '../../utils/media';
 
