@@ -4,7 +4,7 @@ import mainImage from '../../assets/main-bg.jpg';
 
 export const MainPageWrapper = styled.div`
 	width: 100%;
-	height: 100vh;
+	height: calc(100vh - 100px); /* minus navbar */
 	background: url('${mainImage}');
 	background-position: center;
 	background-repeat: no-repeat;
@@ -18,7 +18,7 @@ export const HeroWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	margin-top: -10%;
-	background: ${({ theme }) => theme.colors.primaryDark};
+	background: ${({ theme }) => theme.colors.transparentDark};
 	padding: 30px 20px;
 	border-radius: 5px;
 	width: 100%;
