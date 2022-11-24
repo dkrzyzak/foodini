@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Restaurant } from '../../utils/apiModels';
 import { getRestaurants } from '../../utils/requests';
+import { getRestaurantsDataWithImages } from './helpers';
 
 interface RestaurantsListProps {}
 
@@ -9,16 +10,7 @@ const RestaurantsList = (props: RestaurantsListProps) => {
 
 	const getRestaurantsData = async () => {
 		const data = await getRestaurants('location');
-		const dataWithImportedImages = await Promise.all(
-			data.map(async (restaurant) => {
-				const imageSrc = await import(`../../assets/restaurant-images/${restaurant.imageName}`);
-
-				return {
-					...restaurant,
-					imageName: imageSrc.default as string,
-				};
-			})
-		);
+		const dataWithImportedImages = await getRestaurantsDataWithImages(data);
 
 		setRestaurants(dataWithImportedImages);
 	};
