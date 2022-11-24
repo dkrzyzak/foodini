@@ -20,7 +20,11 @@ const MainPageSearchSection = (props: MainPageSearchSectionProps) => {
 			return;
 		}
 
-		navigate(`/guwno/${encodeURI(location)}`);
+		navigate(`/restauracje`, {
+			state: {
+				location,
+			},
+		});
 	};
 
 	return (
@@ -43,7 +47,7 @@ const MainPageSearchSection = (props: MainPageSearchSectionProps) => {
 					<Media greaterThanOrEqual='mobile'>
 						<P.InputWrapper>
 							<Input icon={'point'} iconPosition={'left'} placeholder={'Wpisz swoje miasto...'} onChange={onChangeLocation} />
-							<Button content={<a>Dalej</a>} icon='right arrow' labelPosition='right' onClick={onNextClick} />
+							<Button content={<span>Dalej</span>} icon='right arrow' labelPosition='right' onClick={onNextClick} />
 						</P.InputWrapper>
 					</Media>
 				</P.FromWrapper>

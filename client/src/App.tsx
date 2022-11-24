@@ -1,6 +1,4 @@
 import React from 'react';
-import Test from './Test';
-
 import { ThemeProvider } from 'styled-components';
 import defaultTheme from './utils/theme';
 import { MediaContextProvider } from './utils/media';
@@ -10,6 +8,7 @@ import MainPage from './pages/MainPage';
 import Header from './modules/Header';
 import { AuthProvider } from './contexts/AuthContext';
 import LoginModal from './modules/LoginModal/LoginModal';
+import RestaurantsList from './modules/RestaurantsList/RestaurantsList';
 
 function App() {
 	return (
@@ -20,7 +19,8 @@ function App() {
 						<Header />
 						<LoginModal />
 						<Routes>
-							<Route path='/' element={<MainPage />} />
+							<Route path='/' element={<MainPage />}></Route>
+							<Route path='restauracje' element={<RestaurantsList />} />
 						</Routes>
 					</BrowserRouter>
 				</AuthProvider>
