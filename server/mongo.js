@@ -24,35 +24,38 @@ const restaurantSchema = new Schema({
 	restaurantId: String,
 	fullName: String,
 	rating: Number,
-	ratesCount: Number,
+	ratingsCount: Number,
 	cuisineType: {
 		type: [String],
-		enum: ['polska', 'włoska', 'desery', 'pizza', 'kebab', 'sushi', 'amerykańska', 'indyjska'],
+		enum: ['polska', 'włoska', 'desery', 'pizza', 'kebab', 'sushi', 'ryby', 'amerykańska', 'indyjska'],
 	},
 	minimalOrderAmount: Number,
 	deliveryPrice: Number,
 	waitingTimeInMins: [Number],
 	imageName: String,
+	logoName: String,
 });
 
 const RestaurantModel = mongoose.model('restaurants', restaurantSchema);
 
 const addRestaurant = async () => {
 	const x = new RestaurantModel({
-		restaurantId: 'apetyt-bistro',
-		fullName: 'Apetyt Bistro',
-		rating: 4.8,
-		ratingsCount: 9950,
-		cuisineType: ['włoska', 'polska'],
-		minimalOrderAmount: 79,
-		deliveryPrice: 0,
+		restaurantId: 'kebab-king',
+		fullName: 'Kebab King',
+		rating: 3.8,
+		ratingsCount: 310,
+		cuisineType: ['kebab'],
+		minimalOrderAmount: 25,
+		deliveryPrice: 5.5,
 		waitingTimeInMins: [30, 55],
-		imageName: 'apetyt-bistro.jpg',
+		imageName: 'kebab-king.jpg',
+		logoName: 'kebab-king-logo.png',
 	});
 
 	try {
 		await x.save();
-		console.log('utworzono restaurację');
+
+		console.log('utworzono restaurację', x.fullName);
 	} catch (e) {
 		console.log(e);
 	}

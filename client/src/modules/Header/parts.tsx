@@ -9,6 +9,7 @@ export const Wrapper = styled.header`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	z-index: 10;
 
 	.item {
 		color: white !important;

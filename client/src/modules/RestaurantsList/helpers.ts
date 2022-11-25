@@ -3,12 +3,18 @@ import { Restaurant } from '../../utils/apiModels';
 export const getRestaurantsDataWithImages = async (restaurants: Restaurant[]) => {
 	return await Promise.all(
 		restaurants.map(async (restaurant) => {
-			const imageSrc = await import(`../../assets/restaurant-images/${restaurant.imageName}`);
-
-			return {
-				...restaurant,
-				imageName: imageSrc.default as string,
-			};
+			try {
+				const mainImageSrc = await import(`../../assets/restaurant-images/${restaurant.imageName}`);
+				const logoImageSrc = await import(`../../assets/restaurant-images/${restaurant.logoName}`);
+				return {
+					...restaurant,
+					imageName: mainImageSrc.default as string,
+					logoName: logoImageSrc.default as string,
+				};
+			} catch (e) {
+				console.log(e);
+				return restaurant;
+			}
 		})
 	);
 };

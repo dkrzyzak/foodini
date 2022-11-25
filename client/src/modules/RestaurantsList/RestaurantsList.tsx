@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { Icon, Label } from 'semantic-ui-react';
 import { Restaurant } from '../../utils/apiModels';
 import { getRestaurants } from '../../utils/requests';
 import { getRestaurantsDataWithImages } from './helpers';
+import * as P from './parts';
 
 interface RestaurantsListProps {}
 
@@ -21,15 +23,28 @@ const RestaurantsList = (props: RestaurantsListProps) => {
 	}, []);
 
 	return (
-		<div>
-			<h1>cipa cyce</h1>
+		<P.RestaurantsListWrapper>
+			<h1>Wybierz spośród {restaurants?.length} restauracji!</h1>
 			{restaurants?.map((restaurant) => (
-				<React.Fragment key={restaurant.restaurantId}>
-					<span>{restaurant.fullName}</span>
-					<img src={restaurant.imageName} alt='sraka' />
-				</React.Fragment>
+				<P.SingleRestaurantWrapper key={restaurant.restaurantId}>
+					<P.PictureSection>
+						<img src={restaurant.imageName} alt={restaurant.imageName} />
+						<P.LogoWrapper>
+							<img src={restaurant.logoName} alt={restaurant.logoName} />
+						</P.LogoWrapper>
+					</P.PictureSection>
+					<P.InfoSection>
+						<h2>{restaurant.fullName}</h2>
+						<h3>{restaurant.cuisineType.join(', ')}</h3>
+
+						<P.RatingLabel>
+							<Icon name='star' />
+							{restaurant.rating}
+						</P.RatingLabel>
+					</P.InfoSection>
+				</P.SingleRestaurantWrapper>
 			))}
-		</div>
+		</P.RestaurantsListWrapper>
 	);
 };
 
