@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Menu, Input } from 'semantic-ui-react';
+import { Menu, Input, Dropdown } from 'semantic-ui-react';
 import logo from '../../assets/logo-color-high.png';
 import { AuthContext } from '../../contexts/AuthContext';
 import * as P from './parts';
@@ -31,16 +31,13 @@ const Header = (props: HeaderProps) => {
 					//  onClick={this.handleItemClick}
 				/> */}
 				<Menu.Menu position='right'>
-					<Menu.Item>
-						<Input icon='search' placeholder='Cipa cyce...' />
-					</Menu.Item>
-					<Menu.Item
-						onClick={onLoginClick}
-						// active={activeItem === 'logout'}
-						// onClick={this.handleItemClick}
-					>
-						Zaloguj się!
-					</Menu.Item>
+					<Dropdown icon='bars' text='Ustawienia' className='icon black' labeled button>
+						<Dropdown.Menu>
+							<Dropdown.Item icon='sign-in' text='Zaloguj się' onClick={onLoginClick} />
+							<Dropdown.Divider />
+							<Dropdown.Item icon='crosshairs' text='Zmień lokalizację' />
+						</Dropdown.Menu>
+					</Dropdown>
 				</Menu.Menu>
 			</P.Menu>
 		</P.Wrapper>

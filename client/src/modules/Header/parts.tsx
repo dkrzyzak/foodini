@@ -11,14 +11,19 @@ export const Wrapper = styled.header`
 	justify-content: center;
 	z-index: 10;
 
-	.item {
+	.dropdown {
 		color: white !important;
+	}
+
+	.menu.right {
+		height: 40px;
 	}
 `;
 
 export const Menu = styled(MenuBase)`
 	height: 90px;
 	padding: 10px 20px;
+	align-items: center;
 `;
 
 export const LogoMenuItem = styled(MenuBase.Item)`

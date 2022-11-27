@@ -22,7 +22,7 @@ const LoginModal = (props: LoginModalProps) => {
 				duration: 200,
 			}}
 		>
-			<Modal onClose={() => setIsLoginModalOpen(false)} open dimmer='blurring'>
+			<Modal onClose={() => setIsLoginModalOpen(false)} open dimmer='blurring' size='mini'>
 				{modalMode === 'login' ? (
 					<>
 						<Modal.Header>Zaloguj się</Modal.Header>
