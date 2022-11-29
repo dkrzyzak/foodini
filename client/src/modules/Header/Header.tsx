@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Menu, Input, Dropdown } from 'semantic-ui-react';
-import logo from '../../assets/logo-color-high.png';
+import { Menu, Dropdown } from 'semantic-ui-react';
+import logo from '../../assets/logos/logo-color-low.png';
 import { AuthContext } from '../../contexts/AuthContext';
 import * as P from './parts';
 

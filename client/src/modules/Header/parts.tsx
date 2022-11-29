@@ -9,7 +9,7 @@ export const Wrapper = styled.header`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	z-index: 10;
+	z-index: 20;
 
 	.dropdown {
 		color: white !important;
