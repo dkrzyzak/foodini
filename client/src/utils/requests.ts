@@ -1,11 +1,12 @@
 import * as Api from './apiModels';
 import axios from 'axios';
+import { RestaurantsSortingOptions } from '../modules/RestaurantsList/constants';
 
-export const getRestaurants = async (location: string) => {
+export const getRestaurants = async (sortBy?: RestaurantsSortingOptions) => {
 	try {
 		const { data } = await axios.get<Api.Restaurant[]>('/restaurants', {
 			params: {
-				location,
+				sortBy,
 			},
 		});
 

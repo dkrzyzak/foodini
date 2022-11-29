@@ -1,9 +1,19 @@
 import React from 'react';
+import { DropdownProps } from 'semantic-ui-react';
+import { options, RestaurantsSortingProps, RestaurantsSortingOptions } from './constants';
+import * as P from './parts';
 
-interface RestaurantsSortingProps {}
+const RestaurantsSorting = ({ sortBy, setSortBy }: RestaurantsSortingProps) => {
+	const onDropdownChange = (event: React.SyntheticEvent, data: DropdownProps) => {
+		setSortBy(data.value as RestaurantsSortingOptions);
+	};
 
-const RestaurantsSorting = (props: RestaurantsSortingProps) => {
-	return <div>Placeholder na sortowanie</div>;
+	return (
+		<P.RestaurantsSortingWrapper>
+			<P.SortBySpan>Sortuj według</P.SortBySpan>
+			<P.Dropdown clearable options={options} selection onChange={onDropdownChange} value={sortBy} />
+		</P.RestaurantsSortingWrapper>
+	);
 };
 
 export default RestaurantsSorting;
