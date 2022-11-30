@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Dimmer, Divider, Header, Icon, Label, Loader } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
+import { Dimmer, Divider, Header, Icon, Loader } from 'semantic-ui-react';
 import { Restaurant } from '../../utils/apiModels';
 import { priceFormat } from '../../utils/helpers';
 import { getRestaurants } from '../../utils/requests';
@@ -32,7 +33,7 @@ const RestaurantsList = (props: RestaurantsListProps) => {
 	return (
 		<P.RestaurantsListWrapper>
 			{isFetching ? (
-				<Dimmer active>
+				<Dimmer active key='0'>
 					<Loader active size='massive'>
 						Wczytywanie...
 					</Loader>
@@ -59,14 +60,18 @@ const RestaurantsList = (props: RestaurantsListProps) => {
 					{restaurants?.map((restaurant) => (
 						<>
 							<P.SingleRestaurantWrapper key={restaurant.restaurantId}>
-								<P.PictureSection>
-									<img src={restaurant.imageName} alt={restaurant.imageName} />
-									<P.LogoWrapper>
-										<img src={restaurant.logoName} alt={restaurant.logoName} />
-									</P.LogoWrapper>
-								</P.PictureSection>
+								<Link to={restaurant.restaurantId}>
+									<P.PictureSection>
+										<img src={restaurant.imageName} alt={restaurant.imageName} />
+										<P.LogoWrapper>
+											<img src={restaurant.logoName} alt={restaurant.logoName} />
+										</P.LogoWrapper>
+									</P.PictureSection>
+								</Link>
 								<P.InfoSection>
-									<h2>{restaurant.fullName}</h2>
+									<h2>
+										<Link to={restaurant.restaurantId}>{restaurant.fullName}</Link>
+									</h2>
 									<h3>{restaurant.cuisineType.join(', ')}</h3>
 
 									<P.RatingLabel>
@@ -79,7 +84,7 @@ const RestaurantsList = (props: RestaurantsListProps) => {
 										{restaurant.waitingTimeInMins[0]} - {restaurant.waitingTimeInMins[1]}min
 									</P.RatingLabel>
 
-									<P.RatingLabel color={restaurant.deliveryPrice ? 'gray' : 'green'}>
+									<P.RatingLabel color={restaurant.deliveryPrice ? 'grey' : 'green'}>
 										<Icon name='motorcycle' />
 										{restaurant.deliveryPrice ? priceFormat(restaurant.deliveryPrice) : 'darmowa dostawa'}
 									</P.RatingLabel>

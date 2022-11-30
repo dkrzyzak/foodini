@@ -3,11 +3,11 @@ import { DropdownItemProps } from 'semantic-ui-react';
 
 export enum RestaurantsSortingOptions {
 	Default = 'default',
-	MinimalOrderAmount = 'minimal-order-amount',
-	DeliveryTime = 'delivery-time',
-	DeliveryPrice = 'delivery-price',
-	Rating = 'rating',
-	Popularity = 'popularity',
+	MinimalOrderAmount = 'minimalOrderAmount',
+	DeliveryTime = 'deliveryTime',
+	DeliveryPrice = 'deliveryPrice',
+	Rating = '-rating',
+	Popularity = '-ratingsCount',
 }
 
 export const options: DropdownItemProps[] = [

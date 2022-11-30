@@ -9,6 +9,7 @@ import Header from './modules/Header';
 import { AuthProvider } from './contexts/AuthContext';
 import LoginModal from './modules/LoginModal/LoginModal';
 import RestaurantsList from './modules/RestaurantsList/RestaurantsList';
+import RestaurantPage from './pages/RestaurantPage';
 
 function App() {
 	return (
@@ -21,6 +22,7 @@ function App() {
 						<Routes>
 							<Route path='/' element={<MainPage />}></Route>
 							<Route path='restauracje' element={<RestaurantsList />} />
+							<Route path='restauracje/:id' element={<RestaurantPage />} />
 						</Routes>
 					</BrowserRouter>
 				</AuthProvider>

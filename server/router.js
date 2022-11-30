@@ -34,29 +34,21 @@ router.post('/login', async (req, res) => {
 
 router.post('/register', (req, res) => {});
 
-const transformSortParam = (sortBy) => {
-	switch (sortBy) {
-		case 'default':
-			return '__v';
-		case 'minimal-order-amount':
-			return 'minimalOrderAmount';
-		case 'delivery-time':
-			return 'waitingTimeInMins[0]';
-		case 'delivery-price':
-			return 'deliveryPrice';
-		case 'rating':
-			return '-rating';
-		case 'popularity':
-			return '-ratingsCount';
-	}
-};
-
 router.get('/restaurants', async (req, res) => {
-	const { sortBy = '' } = req.query;
-	const sortByFieldName = transformSortParam(sortBy);
+	let { sortBy = '' } = req.query;
 
 	try {
-		const restaurantsList = await RestaurantModel.find().sort(sortByFieldName);
+		const restaurantsList = await RestaurantModel.find().sort(sortBy);
+
+		if (sortBy === 'deliveryTime') {
+			restaurantsList.sort((a, b) => {
+				const deliveryTimeA = a.waitingTimeInMins[0];
+				const deliveryTimeB = b.waitingTimeInMins[0];
+
+				return deliveryTimeA - deliveryTimeB;
+			});
+		}
+
 		res.status(200).json(restaurantsList).end();
 	} catch (e) {
 		console.log(e);

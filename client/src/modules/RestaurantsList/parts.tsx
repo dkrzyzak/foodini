@@ -28,15 +28,15 @@ export const SingleRestaurantWrapper = styled.section`
 
 export const PictureSection = styled.div`
 	position: relative;
-	width: 100%;
+	height: 100%;
 
 	> img {
 		width: 100%;
-		height: auto;
+		height: 100%;
+		object-fit: cover;
 	}
 
 	@media (min-width: 768px) {
-		width: 60%;
 		> img {
 		}
 	}
@@ -66,6 +66,13 @@ export const InfoSection = styled.div`
 
 	h2 {
 		margin-bottom: 2px;
+
+		a {
+			color: black;
+			:hover {
+				text-decoration: underline;
+			}
+		}
 	}
 
 	h3 {
