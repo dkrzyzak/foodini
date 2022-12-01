@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Modal, Form, Input, Button, Checkbox, TransitionablePortal } from 'semantic-ui-react';
+import React, { useContext, useState } from 'react';
+import { Modal, Form, Input, Button, TransitionablePortal } from 'semantic-ui-react';
 import { AuthContext } from '../../contexts/AuthContext';
 import * as C from './constants';
 import * as V from './validators';
