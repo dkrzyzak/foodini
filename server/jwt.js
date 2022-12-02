@@ -32,6 +32,8 @@ const verifyTokenMiddleware = async (req, res, next) => {
 		return res.sendStatus(403);
 	}
 
+	req.verifiedEmail = verificationStatus.user.email;
+
 	next();
 };
 

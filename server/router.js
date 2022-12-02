@@ -98,7 +98,12 @@ router.get('/restaurants', async (req, res) => {
 	}
 });
 
-router.get('/protected', verifyTokenMiddleware, (req, res) => {
+router.get('/protected', verifyTokenMiddleware, async (req, res) => {
+	console.log(req.verifiedEmail);
+
+	const user = await UserModel.findOne({ email: req.verifiedEmail });
+	console.log(user);
+
 	res.json({
 		noicokurwa: 'hahahahahahahahhahaha',
 	});
