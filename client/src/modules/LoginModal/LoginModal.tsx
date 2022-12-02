@@ -1,20 +1,37 @@
-import React, { useContext, useState } from 'react';
-import { Modal, Form, Input, Button, TransitionablePortal } from 'semantic-ui-react';
+import React, { useContext, useEffect, useState } from 'react';
+import { Modal, Form, Input, Button, TransitionablePortal, Message } from 'semantic-ui-react';
 import { AuthContext } from '../../contexts/AuthContext';
+import { loginUser, registerNewUser } from '../../utils/requests';
 import * as C from './constants';
 import * as V from './validators';
 
 const LoginModal = () => {
-	const { isLoginModalOpen, setIsLoginModalOpen } = useContext(AuthContext);
+	const { isLoginModalOpen, setIsLoginModalOpen, setIsLoggedIn, setToken } = useContext(AuthContext);
 	const [modalMode, setModalMode] = useState<C.ModalMode>('login');
 	const [loginData, setLoginData] = useState<C.LoginData>(C.initialLoginData);
 	const [registerData, setRegisterData] = useState<C.RegisterData>(C.initialRegisterData);
 	const [formErrors, setFromErrors] = useState<C.FormErrors>();
 	const [isSubmitting, setIsSubmitting] = useState(false);
+	const [errorMsg, setErrorMsg] = useState('');
+	const [successMsg, setSuccessMsg] = useState('');
+
+	useEffect(() => {
+		// cleanup on close
+		if (!isLoginModalOpen) {
+			setSuccessMsg('');
+			setErrorMsg('');
+			setLoginData(C.initialLoginData);
+			setRegisterData(C.initialRegisterData);
+			setFromErrors(undefined);
+			setIsSubmitting(false);
+		}
+	}, [isLoginModalOpen]);
 
 	const onChangeModalMode = (newModalMode: C.ModalMode) => () => {
 		setModalMode(newModalMode);
 		setFromErrors(undefined);
+		setSuccessMsg('');
+		setErrorMsg('');
 
 		if (newModalMode === 'login') {
 			setRegisterData(C.initialRegisterData);
@@ -111,7 +128,7 @@ const LoginModal = () => {
 		return isEmailValid && isPasswordValid;
 	};
 
-	const onLoginSubmit = () => {
+	const onLoginSubmit = async () => {
 		const isValid = validateFormInputs('login');
 
 		if (!isValid) {
@@ -119,13 +136,24 @@ const LoginModal = () => {
 		}
 
 		setIsSubmitting(true);
+		setErrorMsg('');
+		setSuccessMsg('');
 
-		setTimeout(() => {
-			setIsSubmitting(false);
-		}, 1000);
+		const { success, failureReason = '', token = '' } = await loginUser(loginData.email, loginData.password);
+
+		if (success) {
+			setSuccessMsg('Zalogowano pomyślnie!');
+			setToken(token);
+			setIsLoggedIn(true);
+			setLoginData(C.initialLoginData);
+		} else {
+			setErrorMsg(failureReason);
+		}
+
+		setIsSubmitting(false);
 	};
 
-	const onRegistrationSubmit = () => {
+	const onRegistrationSubmit = async () => {
 		const isValid = validateFormInputs('register');
 
 		if (!isValid) {
@@ -133,10 +161,29 @@ const LoginModal = () => {
 		}
 
 		setIsSubmitting(true);
+		setErrorMsg('');
+		setSuccessMsg('');
 
-		setTimeout(() => {
-			setIsSubmitting(false);
-		}, 1000);
+		const { success, failureReason = '', token = '' } = await registerNewUser(registerData.email, registerData.password);
+
+		if (success) {
+			setSuccessMsg('Zarejestrowano pomyślnie!');
+			setToken(token);
+			setIsLoggedIn(true);
+			setRegisterData(C.initialRegisterData);
+		} else {
+			setErrorMsg(failureReason);
+		}
+
+		setIsSubmitting(false);
+	};
+
+	const onDismissSuccessMsg = () => {
+		setSuccessMsg('');
+	};
+
+	const onDismissErrorMsg = () => {
+		setErrorMsg('');
 	};
 
 	return (
@@ -152,7 +199,7 @@ const LoginModal = () => {
 					<>
 						<Modal.Header>Zaloguj się</Modal.Header>
 						<Modal.Content>
-							<Form>
+							<Form success={!!successMsg} error={!!errorMsg}>
 								<Form.Field
 									autoFocus
 									label='E-mail'
@@ -190,8 +237,13 @@ const LoginModal = () => {
 										Zaloguj się!
 									</Button>
 									<Button.Or text='lub' />
-									<Button onClick={onChangeModalMode('register')}>Załóż konto!</Button>
+									<Button onClick={onChangeModalMode('register')} loading={isSubmitting}>
+										Załóż konto!
+									</Button>
 								</Button.Group>
+
+								{successMsg && <Message success header={successMsg} onDismiss={onDismissSuccessMsg} />}
+								{errorMsg && <Message error header='Wystąpił błąd' content={errorMsg} onDismiss={onDismissErrorMsg} />}
 							</Form>
 						</Modal.Content>
 					</>
@@ -199,7 +251,7 @@ const LoginModal = () => {
 					<>
 						<Modal.Header>Załóż konto</Modal.Header>
 						<Modal.Content>
-							<Form>
+							<Form success={!!successMsg} error={!!errorMsg}>
 								<Form.Field
 									autoFocus
 									label='E-mail'
@@ -243,8 +295,13 @@ const LoginModal = () => {
 										Załóż konto!
 									</Button>
 									<Button.Or text='lub' />
-									<Button onClick={onChangeModalMode('login')}>Zaloguj się!</Button>
+									<Button onClick={onChangeModalMode('login')} loading={isSubmitting}>
+										Zaloguj się!
+									</Button>
 								</Button.Group>
+
+								{successMsg && <Message success header={successMsg} onDismiss={onDismissSuccessMsg} />}
+								{errorMsg && <Message error header='Wystąpił błąd' content={errorMsg} onDismiss={onDismissErrorMsg} />}
 							</Form>
 						</Modal.Content>
 					</>

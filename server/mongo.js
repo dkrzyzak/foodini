@@ -16,6 +16,7 @@ const userSchema = new Schema({
 	password: String,
 	created: { type: Date, default: Date.now },
 	pointsCount: Number,
+	jwt: String,
 });
 
 const UserModel = mongoose.model('users', userSchema);

@@ -8,7 +8,7 @@ import * as P from './parts';
 interface HeaderProps {}
 
 const Header = (props: HeaderProps) => {
-	const { setIsLoginModalOpen } = useContext(AuthContext);
+	const { setIsLoginModalOpen, isLoggedIn, onLogout } = useContext(AuthContext);
 
 	const onLoginClick = () => {
 		setIsLoginModalOpen(true);
@@ -33,7 +33,12 @@ const Header = (props: HeaderProps) => {
 				<Menu.Menu position='right'>
 					<Dropdown icon='bars' text='Ustawienia' className='icon black' labeled button>
 						<Dropdown.Menu>
-							<Dropdown.Item icon='sign-in' text='Zaloguj się' onClick={onLoginClick} />
+							{isLoggedIn ? (
+								<Dropdown.Item icon='sign-in' text='Wyloguj się' onClick={onLogout} />
+							) : (
+								<Dropdown.Item icon='sign-in' text='Zaloguj się' onClick={onLoginClick} />
+							)}
+
 							<Dropdown.Divider />
 							<Dropdown.Item icon='crosshairs' text='Zmień lokalizację' />
 						</Dropdown.Menu>

@@ -5,8 +5,7 @@ const hashPassword = async (plainTextPassword) => {
 	try {
 		return await bcrypt.hash(plainTextPassword, saltRounds);
 	} catch (e) {
-		console.log(e);
-		return e.message;
+		throw e;
 	}
 };
 
