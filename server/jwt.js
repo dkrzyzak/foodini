@@ -19,7 +19,8 @@ const verifyJWT = (token, secretKey) =>
 	});
 
 const verifyTokenMiddleware = async (req, res, next) => {
-	const bearerHeader = req.headers['Authorization'];
+	const bearerHeader = req.headers['authorization'];
+
 	if (!bearerHeader) {
 		return res.sendStatus(403);
 	}

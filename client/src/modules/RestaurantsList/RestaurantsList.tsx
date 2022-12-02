@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Dimmer, Divider, Header, Icon, Loader } from 'semantic-ui-react';
+import { AuthContext } from '../../contexts/AuthContext';
 import { Restaurant } from '../../utils/apiModels';
 import { priceFormat } from '../../utils/helpers';
 import { getRestaurants } from '../../utils/requests';
@@ -9,6 +10,7 @@ import { getRestaurantsDataWithImages } from './helpers';
 import * as P from './parts';
 import RestaurantsFilters from './RestaurantsFilters';
 import RestaurantsSorting from './RestaurantsSorting';
+import useMockRequest from './useMockRequest';
 
 interface RestaurantsListProps {}
 
@@ -16,6 +18,8 @@ const RestaurantsList = (props: RestaurantsListProps) => {
 	const [restaurants, setRestaurants] = useState<Restaurant[]>();
 	const [isFetching, setIsFetching] = useState(false);
 	const [sortBy, setSortBy] = useState<RestaurantsSortingOptions>();
+	const { token } = useContext(AuthContext);
+	useMockRequest(token);
 
 	const getRestaurantsData = async () => {
 		const data = await getRestaurants(sortBy);
