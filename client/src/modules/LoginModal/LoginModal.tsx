@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Modal, Form, Input, Button, TransitionablePortal, Message } from 'semantic-ui-react';
 import { AuthContext } from '../../contexts/AuthContext';
-import { loginUser, registerNewUser } from '../../utils/requests';
+import { loginUser, registerNewUser } from '../../api/requests';
 import * as C from './constants';
 import * as V from './validators';
 

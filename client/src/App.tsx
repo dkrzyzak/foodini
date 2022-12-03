@@ -1,12 +1,15 @@
 import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+// PROVIDERS
 import { ThemeProvider } from 'styled-components';
 import defaultTheme from './utils/theme';
+import { AuthProvider } from './contexts/AuthContext';
 import { MediaContextProvider } from './utils/media';
 
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+// PAGES AND MODULES
 import MainPage from './pages/MainPage';
 import Header from './modules/Header';
-import { AuthProvider } from './contexts/AuthContext';
 import LoginModal from './modules/LoginModal/LoginModal';
 import RestaurantsList from './modules/RestaurantsList/RestaurantsList';
 import RestaurantPage from './pages/RestaurantPage';

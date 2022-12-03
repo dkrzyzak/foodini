@@ -1,4 +1,4 @@
-import { Restaurant } from '../../utils/apiModels';
+import { Restaurant } from '../../api/apiModels';
 
 export const getRestaurantsDataWithImages = async (restaurants: Restaurant[]) => {
 	return await Promise.all(
