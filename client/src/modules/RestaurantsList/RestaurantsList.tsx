@@ -1,12 +1,12 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
 import { Dimmer, Divider, Header, Icon, Loader } from 'semantic-ui-react';
 import { AuthContext } from '../../contexts/AuthContext';
 import { Restaurant } from '../../api/apiModels';
 import { priceFormat } from '../../utils/helpers';
-import { getRestaurants } from '../../api/requests';
 import { RestaurantsSortingOptions } from './constants';
-import { getRestaurantsDataWithImages } from './helpers';
+import { getRestaurantsData } from './helpers';
 import * as P from './parts';
 import RestaurantsFilters from './RestaurantsFilters';
 import RestaurantsSorting from './RestaurantsSorting';
@@ -14,29 +14,17 @@ import useMockRequest from './useMockRequest';
 
 interface RestaurantsListProps {}
 
+// TODO: save sortBy on unmount
+
 const RestaurantsList = (props: RestaurantsListProps) => {
-	const [restaurants, setRestaurants] = useState<Restaurant[]>();
-	const [isFetching, setIsFetching] = useState(false);
-	const [sortBy, setSortBy] = useState<RestaurantsSortingOptions>();
+	const [sortBy, setSortBy] = useState<RestaurantsSortingOptions>(RestaurantsSortingOptions.Default);
 	const { token } = useContext(AuthContext);
 	useMockRequest(token);
-
-	const getRestaurantsData = async () => {
-		const data = await getRestaurants(sortBy);
-		const dataWithImportedImages = await getRestaurantsDataWithImages(data);
-
-		setRestaurants(dataWithImportedImages);
-		setIsFetching(false);
-	};
-
-	useEffect(() => {
-		setIsFetching(true);
-		getRestaurantsData();
-	}, [sortBy]);
+	const { data: restaurants, isLoading } = useQuery<Restaurant[]>(['restaurants', sortBy], getRestaurantsData(sortBy));
 
 	return (
 		<P.RestaurantsListWrapper>
-			{isFetching ? (
+			{isLoading ? (
 				<Dimmer active key='0'>
 					<Loader active size='massive'>
 						Wczytywanie...

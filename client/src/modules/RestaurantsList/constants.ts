@@ -21,5 +21,5 @@ export const options: DropdownItemProps[] = [
 
 export interface RestaurantsSortingProps {
 	sortBy: RestaurantsSortingOptions | undefined;
-	setSortBy: React.Dispatch<React.SetStateAction<RestaurantsSortingOptions | undefined>>;
+	setSortBy: React.Dispatch<React.SetStateAction<RestaurantsSortingOptions>>;
 }

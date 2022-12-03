@@ -1,4 +1,6 @@
 import { Restaurant } from '../../api/apiModels';
+import { getRestaurants } from '../../api/requests';
+import { RestaurantsSortingOptions } from './constants';
 
 export const getRestaurantsDataWithImages = async (restaurants: Restaurant[]) => {
 	return await Promise.all(
@@ -17,4 +19,11 @@ export const getRestaurantsDataWithImages = async (restaurants: Restaurant[]) =>
 			}
 		})
 	);
+};
+
+export const getRestaurantsData = (sortBy: RestaurantsSortingOptions) => async () => {
+	const data = await getRestaurants(sortBy);
+	const dataWithImportedImages = await getRestaurantsDataWithImages(data);
+
+	return dataWithImportedImages;
 };

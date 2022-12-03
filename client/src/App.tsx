@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 // PROVIDERS
+import { QueryClient, QueryClientProvider } from 'react-query';
 import { ThemeProvider } from 'styled-components';
 import defaultTheme from './utils/theme';
 import { AuthProvider } from './contexts/AuthContext';
@@ -18,17 +19,19 @@ function App() {
 	return (
 		<MediaContextProvider>
 			<ThemeProvider theme={defaultTheme}>
-				<AuthProvider>
-					<BrowserRouter>
-						<Header />
-						<LoginModal />
-						<Routes>
-							<Route path='/' element={<MainPage />}></Route>
-							<Route path='restauracje' element={<RestaurantsList />} />
-							<Route path='restauracje/:id' element={<RestaurantPage />} />
-						</Routes>
-					</BrowserRouter>
-				</AuthProvider>
+				<QueryClientProvider client={new QueryClient()}>
+					<AuthProvider>
+						<BrowserRouter>
+							<Header />
+							<LoginModal />
+							<Routes>
+								<Route path='/' element={<MainPage />}></Route>
+								<Route path='restauracje' element={<RestaurantsList />} />
+								<Route path='restauracje/:id' element={<RestaurantPage />} />
+							</Routes>
+						</BrowserRouter>
+					</AuthProvider>
+				</QueryClientProvider>
 			</ThemeProvider>
 		</MediaContextProvider>
 	);
