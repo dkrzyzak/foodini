@@ -14,6 +14,8 @@ import Header from './modules/Header';
 import LoginModal from './modules/LoginModal/LoginModal';
 import RestaurantsList from './modules/RestaurantsList/RestaurantsList';
 import RestaurantPage from './modules/RestaurantPage/RestaurantPage';
+import { BasketProvider } from './contexts/BasketContext';
+import ScrollManager from './utils/ScrollManager';
 
 function App() {
 	return (
@@ -21,15 +23,18 @@ function App() {
 			<ThemeProvider theme={defaultTheme}>
 				<QueryClientProvider client={new QueryClient()}>
 					<AuthProvider>
-						<BrowserRouter>
-							<Header />
-							<LoginModal />
-							<Routes>
-								<Route path='/' element={<MainPage />}></Route>
-								<Route path='restauracje' element={<RestaurantsList />} />
-								<Route path='restauracje/:id' element={<RestaurantPage />} />
-							</Routes>
-						</BrowserRouter>
+						<BasketProvider>
+							<BrowserRouter>
+								<ScrollManager />
+								<Header />
+								<LoginModal />
+								<Routes>
+									<Route path='/' element={<MainPage />}></Route>
+									<Route path='restauracje' element={<RestaurantsList />} />
+									<Route path='restauracje/:id' element={<RestaurantPage />} />
+								</Routes>
+							</BrowserRouter>
+						</BasketProvider>
 					</AuthProvider>
 				</QueryClientProvider>
 			</ThemeProvider>

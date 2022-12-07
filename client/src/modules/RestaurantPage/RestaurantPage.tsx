@@ -6,8 +6,7 @@ import { getRestaurantDetails } from '../../api/requests';
 import RestaurantMenu from './RestaurantMenu/RestaurantMenu';
 import * as P from './parts';
 import { useHeaderImage } from './helpers';
-import { Icon, Loader } from 'semantic-ui-react';
-import { priceFormat } from '../../utils/helpers';
+import { Loader } from 'semantic-ui-react';
 import RestaurantInfoLabels from '../RestaurantInfoLabels/RestaurantInfoLabels';
 
 interface RestaurantPageProps {}
@@ -27,7 +26,12 @@ const RestaurantPage = (props: RestaurantPageProps) => {
 				<img src={headerImageSrc} alt={restaurant.restaurantId} />
 			</P.HeaderImageContainer>
 			<P.RestaurantContentContainer>
-				<h1>{restaurant.fullName}</h1>
+				<span>
+					<P.RestaurantName>{restaurant.fullName}</P.RestaurantName>
+					<Link to='..' relative='path'>
+						Powrót
+					</Link>
+				</span>
 
 				<RestaurantInfoLabels
 					rating={restaurant.rating}
@@ -37,10 +41,7 @@ const RestaurantPage = (props: RestaurantPageProps) => {
 					minimalOrderAmount={restaurant.minimalOrderAmount}
 				/>
 
-				<Link to='..' relative='path'>
-					Powrót
-				</Link>
-				<RestaurantMenu menu={restaurant.menu} />
+				<RestaurantMenu menu={restaurant.menu} restaurantId={restaurant.restaurantId} />
 			</P.RestaurantContentContainer>
 		</P.RestaurantPageWrapper>
 	);

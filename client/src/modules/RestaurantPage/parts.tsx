@@ -19,4 +19,17 @@ export const HeaderImageContainer = styled.div`
 export const RestaurantContentContainer = styled.section`
 	width: 90%;
 	margin: 10px auto;
+
+	@media (min-width: 600px) {
+		width: 65%;
+	}
+
+	@media (min-width: 1080px) {
+		width: 45%;
+	}
+`;
+
+export const RestaurantName = styled.h1`
+	display: inline;
+	margin-right: 6px;
 `;

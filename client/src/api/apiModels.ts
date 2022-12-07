@@ -17,6 +17,7 @@ export interface Restaurant {
 export interface RestaurantMenuItem {
 	name: string;
 	price: number;
+	description?: string;
 }
 
 export interface User {
