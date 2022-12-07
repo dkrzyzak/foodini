@@ -1,5 +1,6 @@
 import React from 'react';
 import { RestaurantMenuItem } from '../../../api/apiModels';
+import { priceFormat } from '../../../utils/helpers';
 import * as P from './parts';
 
 interface RestaurantMenuProps {
@@ -15,7 +16,7 @@ const RestaurantMenu = ({ menu }: RestaurantMenuProps) => {
 		<P.RestaurantMenuWrapper>
 			{menu.map(({ name, price }) => (
 				<div>
-					{name} - {price}
+					{name} - {priceFormat(price)}
 				</div>
 			))}
 		</P.RestaurantMenuWrapper>

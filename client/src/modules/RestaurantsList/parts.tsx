@@ -1,4 +1,4 @@
-import { Label as LabelBase, Dropdown as DropdownBase } from 'semantic-ui-react';
+import { Dropdown as DropdownBase } from 'semantic-ui-react';
 import styled from 'styled-components';
 
 export const RestaurantsListWrapper = styled.main`
@@ -83,13 +83,6 @@ export const InfoSection = styled.div`
 	@media (min-width: 768px) {
 		width: 40%;
 	}
-`;
-
-export const RatingLabel = styled(LabelBase)`
-	font-size: 14px !important;
-	cursor: default;
-	margin-top: 5px !important;
-	margin-right: 5px;
 `;
 
 // RESTAURANTS SORTING

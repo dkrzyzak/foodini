@@ -8,9 +8,9 @@ import { priceFormat } from '../../utils/helpers';
 import { RestaurantsSortingOptions } from './constants';
 import { getRestaurantsData } from './helpers';
 import * as P from './parts';
-import RestaurantsFilters from './RestaurantsFilters';
 import RestaurantsSorting from './RestaurantsSorting';
 import useMockRequest from './useMockRequest';
+import RestaurantInfoLabels from '../RestaurantInfoLabels/RestaurantInfoLabels';
 
 interface RestaurantsListProps {}
 
@@ -66,25 +66,13 @@ const RestaurantsList = (props: RestaurantsListProps) => {
 									</h2>
 									<h3>{restaurant.cuisineType.join(', ')}</h3>
 
-									<P.RatingLabel>
-										<Icon name='star' />
-										{restaurant.rating} ({restaurant.ratingsCount})
-									</P.RatingLabel>
-
-									<P.RatingLabel>
-										<Icon name='clock' />
-										{restaurant.waitingTimeInMins[0]} - {restaurant.waitingTimeInMins[1]}min
-									</P.RatingLabel>
-
-									<P.RatingLabel color={restaurant.deliveryPrice ? 'grey' : 'green'}>
-										<Icon name='motorcycle' />
-										{restaurant.deliveryPrice ? priceFormat(restaurant.deliveryPrice) : 'darmowa dostawa'}
-									</P.RatingLabel>
-
-									<P.RatingLabel>
-										<Icon name='shopping basket' />
-										Min. {priceFormat(restaurant.minimalOrderAmount)}
-									</P.RatingLabel>
+									<RestaurantInfoLabels
+										rating={restaurant.rating}
+										ratingsCount={restaurant.ratingsCount}
+										waitingTimeInMins={restaurant.waitingTimeInMins}
+										deliveryPrice={restaurant.deliveryPrice}
+										minimalOrderAmount={restaurant.minimalOrderAmount}
+									/>
 								</P.InfoSection>
 							</P.SingleRestaurantWrapper>
 							<Divider />
