@@ -18,8 +18,8 @@ interface RestaurantsListProps {}
 
 const RestaurantsList = (props: RestaurantsListProps) => {
 	const [sortBy, setSortBy] = useState<RestaurantsSortingOptions>(RestaurantsSortingOptions.Default);
-	const { token } = useContext(AuthContext);
-	useMockRequest(token);
+	// const { token } = useContext(AuthContext);
+	// useMockRequest(token);
 	const { data: restaurants, isLoading } = useQuery<Restaurant[]>(['restaurants', sortBy], getRestaurantsData(sortBy));
 
 	return (

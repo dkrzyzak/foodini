@@ -5,7 +5,7 @@ mongoose.pluralize(null);
 mongoose
 	.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 	.then(() => {
-		console.log('połączono z bazą danych');
+		console.log('Connected with database');
 	})
 	.catch(console.log);
 
@@ -35,34 +35,40 @@ const restaurantSchema = new Schema({
 	waitingTimeInMins: [Number],
 	imageName: String,
 	logoName: String,
+	menu: [
+		{
+			name: String,
+			price: Number,
+		},
+	],
 });
 
 const RestaurantModel = mongoose.model('restaurants', restaurantSchema);
 
-const addRestaurant = async () => {
-	const x = new RestaurantModel({
-		restaurantId: 'kebab-king',
-		fullName: 'Kebab King',
-		rating: 3.8,
-		ratingsCount: 310,
-		cuisineType: ['kebab'],
-		minimalOrderAmount: 25,
-		deliveryPrice: 5.5,
-		waitingTimeInMins: [30, 55],
-		imageName: 'kebab-king.jpg',
-		logoName: 'kebab-king-logo.png',
-	});
+const addMenu = async () => {
+	const menu = [
+		{ name: 'Pierś panierowania', price: 41 },
+		{ name: 'Żurek staropolski', price: 40 },
+		{ name: 'Pizza Carpi', price: 38 },
+		{ name: 'Pizza Pepperoni', price: 40 },
+		{ name: 'Pizza Leśna', price: 45 },
+		{ name: 'Frytki belgijskie', price: 25 },
+		{ name: 'Woda 500ml', price: 5 },
+		{ name: 'Sok pomarańczowy 1l', price: 7 },
+	];
+
+	const restaurantId = 'apetyt-bistro';
 
 	try {
-		await x.save();
+		await RestaurantModel.updateOne({ restaurantId }, { menu });
 
-		console.log('utworzono restaurację', x.fullName);
+		console.log('dodano menu do restauracji', restaurantId);
 	} catch (e) {
 		console.log(e);
 	}
 };
 
-// addRestaurant();
+// addMenu();
 
 module.exports = {
 	db,

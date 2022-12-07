@@ -98,6 +98,19 @@ router.get('/restaurants', async (req, res) => {
 	}
 });
 
+router.get('/restaurants/:id', async (req, res) => {
+	let { id } = req.params;
+
+	try {
+		const restaurants = await RestaurantModel.findOne({ restaurantId: id });
+
+		res.status(200).json(restaurants).end();
+	} catch (e) {
+		console.log(e);
+		res.status(500).end();
+	}
+});
+
 router.get('/protected', verifyTokenMiddleware, async (req, res) => {
 	console.log(req.verifiedEmail);
 

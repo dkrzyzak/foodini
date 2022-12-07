@@ -11,6 +11,12 @@ export interface Restaurant {
 	waitingTimeInMins: [number, number]; // lower and upper bound
 	imageName: string; // images would be in assets folder, we only need proper name
 	logoName: string;
+	menu: RestaurantMenuItem[];
+}
+
+export interface RestaurantMenuItem {
+	name: string;
+	price: number;
 }
 
 export interface User {

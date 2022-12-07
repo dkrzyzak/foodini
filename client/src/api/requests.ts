@@ -17,6 +17,17 @@ export const getRestaurants = async (sortBy?: RestaurantsSortingOptions) => {
 	}
 };
 
+export const getRestaurantDetails = async (restaurantId: string) => {
+	try {
+		const { data } = await axios.get<Api.Restaurant>(`/restaurants/${restaurantId}`);
+
+		return data;
+	} catch (e) {
+		console.log(e);
+		return null;
+	}
+};
+
 interface RegisterReturnValue {
 	success: boolean;
 	token?: string;
