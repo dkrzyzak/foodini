@@ -15,6 +15,12 @@ const MainPageSearchSection = (props: MainPageSearchSectionProps) => {
 		setLocation(e.target.value);
 	};
 
+	const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+		if (e.key === 'Enter') {
+			onNextClick();
+		}
+	};
+
 	const onNextClick = () => {
 		if (!location) {
 			return;
@@ -46,7 +52,13 @@ const MainPageSearchSection = (props: MainPageSearchSectionProps) => {
 					</Media>
 					<Media greaterThanOrEqual='mobile'>
 						<P.InputWrapper>
-							<Input icon={'point'} iconPosition={'left'} placeholder={'Wpisz swoje miasto...'} onChange={onChangeLocation} />
+							<Input
+								icon={'point'}
+								iconPosition={'left'}
+								placeholder={'Wpisz swoje miasto...'}
+								onChange={onChangeLocation}
+								onKeyDown={onKeyDown}
+							/>
 							<Button content={<span>Dalej</span>} icon='right arrow' labelPosition='right' onClick={onNextClick} />
 						</P.InputWrapper>
 					</Media>
