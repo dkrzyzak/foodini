@@ -9,11 +9,11 @@ import { AuthProvider } from './contexts/AuthContext';
 import { MediaContextProvider } from './utils/media';
 
 // PAGES AND MODULES
-import MainPage from './pages/MainPage';
+import MainPage from './modules/MainPage';
 import Header from './modules/Header';
 import LoginModal from './modules/LoginModal/LoginModal';
 import RestaurantsList from './modules/RestaurantsList/RestaurantsList';
-import RestaurantPage from './pages/RestaurantPage';
+import RestaurantPage from './modules/RestaurantPage/RestaurantPage';
 
 function App() {
 	return (
