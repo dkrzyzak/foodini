@@ -39,6 +39,7 @@ const restaurantSchema = new Schema({
 		{
 			name: String,
 			price: Number,
+			description: String,
 		},
 	],
 });
@@ -47,12 +48,12 @@ const RestaurantModel = mongoose.model('restaurants', restaurantSchema);
 
 const addMenu = async () => {
 	const menu = [
-		{ name: 'Pierś panierowania', price: 41 },
-		{ name: 'Żurek staropolski', price: 40 },
-		{ name: 'Pizza Carpi', price: 38 },
-		{ name: 'Pizza Pepperoni', price: 40 },
-		{ name: 'Pizza Leśna', price: 45 },
-		{ name: 'Frytki belgijskie', price: 25 },
+		{ name: 'Chicken Burger', price: 32, description: 'pierś' },
+		{ name: 'Żurek staropolski', price: 40, description: 'żurek' },
+		{ name: 'Pizza Carpi', price: 38, description: 'włoskich' },
+		{ name: 'Pizza Pepperoni', price: 40, description: 'sera' },
+		{ name: 'Pizza Leśna', price: 45, description: 'rozmaryn' },
+		{ name: 'Frytki', price: 13 },
 		{ name: 'Woda 500ml', price: 5 },
 		{ name: 'Sok pomarańczowy 1l', price: 7 },
 	];
