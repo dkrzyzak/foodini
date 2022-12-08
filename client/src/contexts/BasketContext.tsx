@@ -1,19 +1,33 @@
 import React, { useState } from 'react';
+import { RestaurantMenuItem } from '../api/apiModels';
 
 interface IBasketContext {
 	basket: Record<string, number>;
-	restaurantId: string;
+	basketRestaurantId: string;
 	addToBasket: (itemName: string, restaurantId: string) => () => void;
 	increaseCount: (itemName: string) => () => void;
 	decreaseCount: (itemName: string) => () => void;
 	isInBasket: (itemName: string, restaurantId: string) => number;
+	isBasketEmpty: () => boolean;
+	getBasketValue: () => number;
+	passCurrentMenu: (menu: RestaurantMenuItem[]) => void;
+	minimalOrderAmount: number;
+	setMinimalOrderAmount: React.Dispatch<React.SetStateAction<number>>;
 }
+
+// name, price
+type MenuWithPrices = Record<string, number>;
+
+// name, count
+type Basket = Record<string, number>;
 
 const BasketContext = React.createContext<IBasketContext>({} as IBasketContext);
 
 const BasketProvider = ({ children }: { children: React.ReactNode }) => {
-	const [basket, setBasket] = useState<Record<string, number>>({});
+	const [basket, setBasket] = useState<Basket>({});
 	const [basketRestaurantId, setBasketRestaurantId] = useState('');
+	const [currentMenu, setCurrentMenu] = useState<MenuWithPrices>({});
+	const [minimalOrderAmount, setMinimalOrderAmount] = useState(0);
 
 	const isInBasket = (itemName: string, restaurantId: string): number => {
 		if (basketRestaurantId !== restaurantId) {
@@ -64,13 +78,42 @@ const BasketProvider = ({ children }: { children: React.ReactNode }) => {
 		});
 	};
 
+	const passCurrentMenu = (menu: RestaurantMenuItem[]) => {
+		const mappedMenu: MenuWithPrices = {};
+
+		menu.forEach(({ name, price }) => {
+			mappedMenu[name] = price;
+		});
+
+		setCurrentMenu(mappedMenu);
+	};
+
+	const isBasketEmpty = () => {
+		return Object.keys(basket).length === 0;
+	};
+
+	const getBasketValue = () => {
+		if (isBasketEmpty()) return 0;
+
+		return Object.entries(basket).reduce((accumulator, current) => {
+			const [itemName, itemCount] = current;
+
+			return accumulator + itemCount * currentMenu[itemName];
+		}, 0);
+	};
+
 	const contextValue: IBasketContext = {
 		basket,
-		restaurantId: basketRestaurantId,
+		basketRestaurantId,
 		addToBasket,
 		increaseCount,
 		decreaseCount,
 		isInBasket,
+		isBasketEmpty,
+		getBasketValue,
+		passCurrentMenu,
+		minimalOrderAmount,
+		setMinimalOrderAmount,
 	};
 
 	return <BasketContext.Provider value={contextValue}>{children}</BasketContext.Provider>;
