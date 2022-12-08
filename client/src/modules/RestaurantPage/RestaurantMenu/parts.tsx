@@ -5,6 +5,11 @@ export const RestaurantMenuWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	margin-top: 20px;
+	margin-bottom: 100px;
+
+	@media (min-width: 1080px) {
+		margin-bottom: 0;
+	}
 `;
 
 export const ItemWrapper = styled.div<{ hasDescription?: boolean }>`

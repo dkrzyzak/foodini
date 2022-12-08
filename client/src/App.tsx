@@ -16,6 +16,7 @@ import RestaurantsList from './modules/RestaurantsList/RestaurantsList';
 import RestaurantPage from './modules/RestaurantPage/RestaurantPage';
 import { BasketProvider } from './contexts/BasketContext';
 import ScrollManager from './utils/ScrollManager';
+import CheckoutPage from './modules/CheckoutPage/CheckoutPage';
 
 function App() {
 	return (
@@ -32,6 +33,7 @@ function App() {
 									<Route path='/' element={<MainPage />}></Route>
 									<Route path='restauracje' element={<RestaurantsList />} />
 									<Route path='restauracje/:id' element={<RestaurantPage />} />
+									<Route path='/checkout' element={<CheckoutPage />} />
 								</Routes>
 							</BrowserRouter>
 						</BasketProvider>

@@ -10,13 +10,20 @@ interface IBasketContext {
 	isInBasket: (itemName: string, restaurantId: string) => number;
 	isBasketEmpty: () => boolean;
 	getBasketValue: () => number;
-	passCurrentMenu: (menu: RestaurantMenuItem[]) => void;
+	getBasketWithDeliveryValue: () => number;
+	passCurrentMenu: (menu: RestaurantMenuItem[], deliveryPrice: number, minimalOrderAmount: number) => void;
+	currentMenu: MappedMenu;
+	deliveryPrice: number;
 	minimalOrderAmount: number;
-	setMinimalOrderAmount: React.Dispatch<React.SetStateAction<number>>;
 }
 
-// name, price
-type MenuWithPrices = Record<string, number>;
+type MappedMenu = Record<
+	string, // name of item
+	{
+		price: number;
+		description?: string;
+	}
+>;
 
 // name, count
 type Basket = Record<string, number>;
@@ -26,7 +33,8 @@ const BasketContext = React.createContext<IBasketContext>({} as IBasketContext);
 const BasketProvider = ({ children }: { children: React.ReactNode }) => {
 	const [basket, setBasket] = useState<Basket>({});
 	const [basketRestaurantId, setBasketRestaurantId] = useState('');
-	const [currentMenu, setCurrentMenu] = useState<MenuWithPrices>({});
+	const [currentMenu, setCurrentMenu] = useState<MappedMenu>({});
+	const [deliveryPrice, setDeliveryPrice] = useState(0);
 	const [minimalOrderAmount, setMinimalOrderAmount] = useState(0);
 
 	const isInBasket = (itemName: string, restaurantId: string): number => {
@@ -78,14 +86,19 @@ const BasketProvider = ({ children }: { children: React.ReactNode }) => {
 		});
 	};
 
-	const passCurrentMenu = (menu: RestaurantMenuItem[]) => {
-		const mappedMenu: MenuWithPrices = {};
+	const passCurrentMenu = (menu: RestaurantMenuItem[], deliveryPrice: number, minimalOrderAmount: number) => {
+		const mappedMenu: MappedMenu = {};
 
-		menu.forEach(({ name, price }) => {
-			mappedMenu[name] = price;
+		menu.forEach(({ name, price, description }) => {
+			mappedMenu[name] = {
+				price,
+				description,
+			};
 		});
 
 		setCurrentMenu(mappedMenu);
+		setDeliveryPrice(deliveryPrice);
+		setMinimalOrderAmount(minimalOrderAmount);
 	};
 
 	const isBasketEmpty = () => {
@@ -98,8 +111,12 @@ const BasketProvider = ({ children }: { children: React.ReactNode }) => {
 		return Object.entries(basket).reduce((accumulator, current) => {
 			const [itemName, itemCount] = current;
 
-			return accumulator + itemCount * currentMenu[itemName];
+			return accumulator + itemCount * currentMenu[itemName].price;
 		}, 0);
+	};
+
+	const getBasketWithDeliveryValue = () => {
+		return getBasketValue() + deliveryPrice;
 	};
 
 	const contextValue: IBasketContext = {
@@ -111,9 +128,11 @@ const BasketProvider = ({ children }: { children: React.ReactNode }) => {
 		isInBasket,
 		isBasketEmpty,
 		getBasketValue,
+		getBasketWithDeliveryValue,
 		passCurrentMenu,
+		currentMenu,
+		deliveryPrice,
 		minimalOrderAmount,
-		setMinimalOrderAmount,
 	};
 
 	return <BasketContext.Provider value={contextValue}>{children}</BasketContext.Provider>;

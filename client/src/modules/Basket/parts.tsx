@@ -6,7 +6,7 @@ export const BasketWrapper = styled.section<{ areMinimalRequirementsMet: boolean
 	left: 0;
 	width: 100%;
 	height: 100px;
-	z-index: 2;
+	z-index: 3;
 	color: white;
 	font-size: 20px;
 	background: ${({ theme }) => theme.colors.secondaryDark};
@@ -17,7 +17,7 @@ export const BasketWrapper = styled.section<{ areMinimalRequirementsMet: boolean
 	@media (min-width: 1080px) {
 		background: transparent;
 		width: 400px;
-		right: 20px;
+		right: 5vw;
 		bottom: 50px;
 		left: unset;
 		border-radius: 10px;

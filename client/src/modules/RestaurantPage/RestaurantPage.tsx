@@ -17,11 +17,11 @@ const RestaurantPage = (props: RestaurantPageProps) => {
 	const { id = '' } = useParams();
 	const headerImageSrc = useHeaderImage(id);
 	const { data: restaurant, isLoading } = useQuery<Restaurant | null>(['restaurant', id], () => getRestaurantDetails(id));
-	const { setMinimalOrderAmount } = useContext(BasketContext);
+	const { passCurrentMenu } = useContext(BasketContext);
 
 	useEffect(() => {
-		if (restaurant?.minimalOrderAmount) {
-			setMinimalOrderAmount(restaurant.minimalOrderAmount);
+		if (restaurant?.menu.length && passCurrentMenu) {
+			passCurrentMenu(restaurant.menu, restaurant.deliveryPrice, restaurant.minimalOrderAmount);
 		}
 		// eslint-disable-next-line
 	}, [restaurant]);

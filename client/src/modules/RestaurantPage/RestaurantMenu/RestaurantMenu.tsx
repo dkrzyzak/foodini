@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Button, Icon, Label } from 'semantic-ui-react';
 import { RestaurantMenuItem } from '../../../api/apiModels';
 import { BasketContext } from '../../../contexts/BasketContext';
@@ -11,14 +11,7 @@ interface RestaurantMenuProps {
 }
 
 const RestaurantMenu = ({ menu, restaurantId }: RestaurantMenuProps) => {
-	const { addToBasket, increaseCount, decreaseCount, isInBasket, passCurrentMenu } = useContext(BasketContext);
-
-	useEffect(() => {
-		if (menu.length && passCurrentMenu) {
-			passCurrentMenu(menu);
-		}
-		// eslint-disable-next-line
-	}, [menu]);
+	const { addToBasket, increaseCount, decreaseCount, isInBasket } = useContext(BasketContext);
 
 	return (
 		<P.RestaurantMenuWrapper>
