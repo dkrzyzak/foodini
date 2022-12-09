@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { Header } from 'semantic-ui-react';
 import { BasketContext } from '../../contexts/BasketContext';
+import AddressForm from './AddressForm/AddressForm';
 import OrderTable from './OrderTable';
 import * as P from './parts';
 
@@ -24,6 +25,7 @@ const CheckoutPage = (props: CheckoutPageProps) => {
 				</a>
 			</P.HeaderSection>
 			<OrderTable />
+			<AddressForm />
 		</P.CheckoutWrapper>
 	);
 };

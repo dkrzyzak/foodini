@@ -39,7 +39,7 @@ const OrderTable = (props: OrderTableProps) => {
 					</Table.Row>
 					<Table.Row>
 						<Table.Cell>Koszt dostawy:</Table.Cell>
-						<Table.Cell textAlign='right'>{deliveryPrice ? priceFormat(getBasketValue()) : 'Za darmo'}</Table.Cell>
+						<Table.Cell textAlign='right'>{deliveryPrice ? priceFormat(deliveryPrice) : 'Za darmo'}</Table.Cell>
 					</Table.Row>
 					<Table.Row>
 						<Table.Cell>Kwota całkowita:</Table.Cell>
