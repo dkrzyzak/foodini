@@ -17,7 +17,7 @@ export const useHeaderImage = (restaurantId: string) => {
 		getHeaderImage(restaurantId, 'avif').then((resolvedSrc) => {
 			setImageSrc(resolvedSrc);
 		});
-	}, []);
+	}, [restaurantId]);
 
 	return imageSrc;
 };

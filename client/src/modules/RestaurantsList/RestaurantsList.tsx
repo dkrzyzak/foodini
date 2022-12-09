@@ -1,15 +1,16 @@
-import React, { useContext, useState } from 'react';
+import React, {
+	// useContext,
+	useState,
+} from 'react';
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
 import { Dimmer, Divider, Header, Icon, Loader } from 'semantic-ui-react';
-import { AuthContext } from '../../contexts/AuthContext';
+// import { AuthContext } from '../../contexts/AuthContext';
 import { Restaurant } from '../../api/apiModels';
-import { priceFormat } from '../../utils/helpers';
 import { RestaurantsSortingOptions } from './constants';
 import { getRestaurantsData } from './helpers';
 import * as P from './parts';
 import RestaurantsSorting from './RestaurantsSorting';
-import useMockRequest from './useMockRequest';
 import RestaurantInfoLabels from '../RestaurantInfoLabels/RestaurantInfoLabels';
 
 interface RestaurantsListProps {}

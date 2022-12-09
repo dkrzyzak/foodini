@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon, Popup } from 'semantic-ui-react';
+import { Icon } from 'semantic-ui-react';
 import { priceFormat } from '../../utils/helpers';
 import { RatingLabel } from './parts';
 

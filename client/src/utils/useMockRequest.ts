@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { protectedRoute } from '../../api/requests';
+import { protectedRoute } from '../api/requests';
 
 const useMockRequest = (token: string) => {
 	const onMakeRequest = async () => {
