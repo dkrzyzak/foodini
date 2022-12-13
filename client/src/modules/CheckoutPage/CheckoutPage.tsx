@@ -1,7 +1,10 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { Header } from 'semantic-ui-react';
+import Cookies from 'js-cookie';
+import { getAddress, postAddress } from '../../api/requests';
 import { BasketContext } from '../../contexts/BasketContext';
+import { useAuth } from '../../contexts/useAuth';
 import AddressForm from './AddressForm/AddressForm';
 import { AddressFormValues } from './AddressForm/constants';
 import CheckoutSteps from './CheckoutSteps';
@@ -18,9 +21,31 @@ const CheckoutPage = () => {
 		getBasketWithDeliveryValue,
 		basket,
 	} = useContext(BasketContext);
+
+	const { isLoggedIn, token } = useAuth();
+
 	const navigate = useNavigate();
 	const [selectedAddress, setAddress] = useState<AddressFormValues>();
 	const [checkoutStep, setCheckoutStep] = useState<CheckoutStep>(CheckoutStep.Delivery);
+
+	const handleInitialFormValues = async () => {
+		if (isLoggedIn) {
+			const addressFromApi = await getAddress(token);
+			if (addressFromApi) {
+				setAddress(addressFromApi);
+			}
+		} else {
+			const addressFromCookie = Cookies.get('address');
+			if (addressFromCookie) {
+				setAddress(JSON.parse(addressFromCookie));
+			}
+		}
+	};
+
+	useEffect(() => {
+		handleInitialFormValues();
+		// eslint-disable-next-line
+	}, []);
 
 	if (isBasketEmpty() || getBasketValue() < minimalOrderAmount) {
 		return <Navigate to='/restauracje' replace />;
@@ -28,6 +53,12 @@ const CheckoutPage = () => {
 
 	const onConfirmAddress = (address: AddressFormValues) => {
 		setAddress(address);
+
+		if (isLoggedIn) {
+			postAddress(address, token);
+		} else {
+			Cookies.set('address', JSON.stringify(address));
+		}
 		setCheckoutStep(CheckoutStep.Payment);
 	};
 

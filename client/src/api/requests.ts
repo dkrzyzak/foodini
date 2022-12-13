@@ -34,7 +34,10 @@ interface RegisterReturnValue {
 	failureReason?: string;
 }
 
-export const registerNewUser = async (email: string, password: string): Promise<RegisterReturnValue> => {
+export const registerNewUser = async (
+	email: string,
+	password: string
+): Promise<RegisterReturnValue> => {
 	try {
 		const { status, data } = await axios.post('/auth/register', {
 			email,
@@ -73,7 +76,10 @@ export const registerNewUser = async (email: string, password: string): Promise<
 	};
 };
 
-export const loginUser = async (email: string, password: string): Promise<RegisterReturnValue> => {
+export const loginUser = async (
+	email: string,
+	password: string
+): Promise<RegisterReturnValue> => {
 	try {
 		const { status, data } = await axios.post('/auth/login', {
 			email,
@@ -112,6 +118,37 @@ export const loginUser = async (email: string, password: string): Promise<Regist
 		success: false,
 		failureReason: 'Nieznany błąd',
 	};
+};
+
+export const postAddress = async (
+	address: Api.Address,
+	token: string
+): Promise<boolean> => {
+	try {
+		const { status } = await axios.post('/address/', address, {
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		});
+
+		return status === 200;
+	} catch (e: unknown) {
+		return false;
+	}
+};
+
+export const getAddress = async (token: string) => {
+	try {
+		const { data } = await axios.get<Api.Address>('/address/', {
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		});
+
+		return data;
+	} catch (e: unknown) {
+		return null;
+	}
 };
 
 export const protectedRoute = async (token: string) => {

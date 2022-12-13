@@ -55,7 +55,7 @@ const InputWithLabelBinding = ({
 
 	useEffect(() => {
 		setFieldValue(name, value);
-		// eslint-disable
+		// eslint-disable-next-line
 	}, [value]);
 
 	return (

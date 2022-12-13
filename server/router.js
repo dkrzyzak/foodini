@@ -5,7 +5,7 @@ const {
 } = require('./mongo');
 
 const { verifyTokenMiddleware } = require('./jwt');
-const { authRouter, restaurantsRouter } = require('./routers');
+const { authRouter, addressRouter, restaurantsRouter } = require('./routers');
 
 const rootRouter = express.Router();
 
@@ -14,6 +14,7 @@ rootRouter.get('/', (req, res) => {
 });
 
 rootRouter.use('/auth', authRouter);
+rootRouter.use('/address', addressRouter);
 rootRouter.use('/restaurants', restaurantsRouter);
 
 rootRouter.get('/protected', verifyTokenMiddleware, async (req, res) => {

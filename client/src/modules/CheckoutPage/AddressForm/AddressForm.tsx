@@ -16,6 +16,7 @@ const AddressForm = ({ initialAddress, onConfirmAddress }: C.AddressFormProps) =
 		<>
 			<h2>Adres dostawy</h2>
 			<Formik
+				enableReinitialize
 				initialValues={initialAddress || C.initialValues}
 				onSubmit={onSubmit}
 				validationSchema={C.addressFormValidateSchema}

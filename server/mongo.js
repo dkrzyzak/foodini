@@ -56,6 +56,16 @@ const restaurantSchema = new Schema({
 
 const RestaurantModel = mongoose.model('restaurants', restaurantSchema);
 
+const addressSchema = new Schema({
+	userEmail: String,
+	streetAndNr: String,
+	city: String,
+	postalCode: String,
+	phoneNr: String,
+});
+
+const AddressModel = mongoose.model('addresses', addressSchema);
+
 const addMenu = async () => {
 	const menu = [
 		{ name: 'Chicken Burger', price: 32, description: 'pierś' },
@@ -86,5 +96,6 @@ module.exports = {
 	models: {
 		UserModel,
 		RestaurantModel,
+		AddressModel,
 	},
 };
