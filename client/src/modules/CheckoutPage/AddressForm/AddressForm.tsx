@@ -8,7 +8,6 @@ const AddressForm = ({ initialAddress, onConfirmAddress }: C.AddressFormProps) =
 	const [shouldValidateOnChange, setValidateOnChange] = useState(false);
 
 	const onSubmit = (values: C.AddressFormValues) => {
-		console.log(values);
 		onConfirmAddress(values);
 	};
 

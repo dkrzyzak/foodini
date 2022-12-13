@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { Header } from 'semantic-ui-react';
-import Cookies from 'js-cookie';
-import { getAddress, postAddress } from '../../api/requests';
 import { useAuth } from '../../contexts/useAuth';
 import { useBasket } from '../../contexts/useBasket';
 import AddressForm from './AddressForm/AddressForm';
@@ -12,6 +10,7 @@ import { CheckoutStep } from './constants';
 import OrderTable from './OrderTable';
 import * as P from './parts';
 import PaymentForm from './PaymentForm/PaymentForm';
+import useAddress from './useAddress';
 
 const CheckoutPage = () => {
 	const {
@@ -28,19 +27,11 @@ const CheckoutPage = () => {
 	const [selectedAddress, setAddress] = useState<AddressFormValues>();
 	const [checkoutStep, setCheckoutStep] = useState<CheckoutStep>(CheckoutStep.Delivery);
 
-	const handleInitialFormValues = async () => {
-		if (isLoggedIn) {
-			const addressFromApi = await getAddress(token);
-			if (addressFromApi) {
-				setAddress(addressFromApi);
-			}
-		} else {
-			const addressFromCookie = Cookies.get('address');
-			if (addressFromCookie) {
-				setAddress(JSON.parse(addressFromCookie));
-			}
-		}
-	};
+	const { handleInitialFormValues, saveSubmittedFormValues } = useAddress(
+		isLoggedIn,
+		token,
+		setAddress
+	);
 
 	useEffect(() => {
 		handleInitialFormValues();
@@ -53,12 +44,7 @@ const CheckoutPage = () => {
 
 	const onConfirmAddress = (address: AddressFormValues) => {
 		setAddress(address);
-
-		if (isLoggedIn) {
-			postAddress(address, token);
-		} else {
-			Cookies.set('address', JSON.stringify(address));
-		}
+		saveSubmittedFormValues(address);
 		setCheckoutStep(CheckoutStep.Payment);
 	};
 
