@@ -52,8 +52,8 @@ const RestaurantsList = (props: RestaurantsListProps) => {
 					</Divider>
 
 					{restaurants?.map((restaurant) => (
-						<>
-							<P.SingleRestaurantWrapper key={restaurant.restaurantId}>
+						<React.Fragment key={restaurant.restaurantId}>
+							<P.SingleRestaurantWrapper>
 								<Link to={restaurant.restaurantId}>
 									<P.PictureSection>
 										<img
@@ -86,7 +86,7 @@ const RestaurantsList = (props: RestaurantsListProps) => {
 								</P.InfoSection>
 							</P.SingleRestaurantWrapper>
 							<Divider />
-						</>
+						</React.Fragment>
 					))}
 				</>
 			)}

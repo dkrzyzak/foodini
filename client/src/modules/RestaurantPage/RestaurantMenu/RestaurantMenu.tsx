@@ -16,7 +16,7 @@ const RestaurantMenu = ({ menu, restaurantId }: RestaurantMenuProps) => {
 	return (
 		<P.RestaurantMenuWrapper>
 			{menu.map(({ name, price, description }) => (
-				<P.ItemWrapper hasDescription={Boolean(description)}>
+				<P.ItemWrapper key={name} hasDescription={Boolean(description)}>
 					<P.LeftSideWrapper>
 						<P.ItemName as='h3'>{name}</P.ItemName>
 						{description && <p>{description}</p>}
