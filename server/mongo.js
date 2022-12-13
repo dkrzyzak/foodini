@@ -28,7 +28,17 @@ const restaurantSchema = new Schema({
 	ratingsCount: Number,
 	cuisineType: {
 		type: [String],
-		enum: ['polska', 'włoska', 'desery', 'pizza', 'kebab', 'sushi', 'ryby', 'amerykańska', 'indyjska'],
+		enum: [
+			'polska',
+			'włoska',
+			'desery',
+			'pizza',
+			'kebab',
+			'sushi',
+			'ryby',
+			'amerykańska',
+			'indyjska',
+		],
 	},
 	minimalOrderAmount: Number,
 	deliveryPrice: Number,

@@ -26,4 +26,4 @@ export const initialRegisterData: RegisterData = {
 	acceptTerms: false,
 };
 
-const testUser = { email: 'sraken@pierdaken.pl', password: 'apitest' };
+// const testUser = { email: 'sraken@pierdaken.pl', password: 'apitest' };
