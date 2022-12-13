@@ -36,7 +36,7 @@ interface RegisterReturnValue {
 
 export const registerNewUser = async (email: string, password: string): Promise<RegisterReturnValue> => {
 	try {
-		const { status, data } = await axios.post('/register', {
+		const { status, data } = await axios.post('/auth/register', {
 			email,
 			password,
 		});
@@ -75,7 +75,7 @@ export const registerNewUser = async (email: string, password: string): Promise<
 
 export const loginUser = async (email: string, password: string): Promise<RegisterReturnValue> => {
 	try {
-		const { status, data } = await axios.post('/login', {
+		const { status, data } = await axios.post('/auth/login', {
 			email,
 			password,
 		});
