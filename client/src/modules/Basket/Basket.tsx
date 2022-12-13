@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button, Icon, Message } from 'semantic-ui-react';
-import { BasketContext } from '../../contexts/BasketContext';
+import { useBasket } from '../../contexts/useBasket';
 import { priceFormat } from '../../utils/helpers';
 import * as P from './parts';
 
@@ -12,7 +12,8 @@ const getRestaurantIdFromPathName = (pathname: string) => {
 };
 
 const Basket = (props: BasketProps) => {
-	const { getBasketValue, isBasketEmpty, minimalOrderAmount, basketRestaurantId } = useContext(BasketContext);
+	// prettier-ignore
+	const { getBasketValue, isBasketEmpty, minimalOrderAmount, basketRestaurantId } = useBasket();
 	const { pathname } = useLocation();
 
 	if (isBasketEmpty()) {
@@ -29,15 +30,27 @@ const Basket = (props: BasketProps) => {
 	return (
 		<P.BasketWrapper areMinimalRequirementsMet={areMinimalRequirementsMet}>
 			{areMinimalRequirementsMet ? (
-				<Button icon labelPosition='left' size='big' positive as={Link} to='/checkout'>
+				<Button
+					icon
+					labelPosition='left'
+					size='big'
+					positive
+					as={Link}
+					to='/checkout'
+				>
 					<Icon name='cart' />
 					Kontynuuj ({priceFormat(currentBasketValue)})
 				</Button>
 			) : (
 				<div>
 					<Message warning size='mini'>
-						<Message.Header>Nie spełniono minimalnej kwoty zamówienia</Message.Header>
-						<p>Brakuje jeszcze {priceFormat(minimalOrderAmount - currentBasketValue)}</p>
+						<Message.Header>
+							Nie spełniono minimalnej kwoty zamówienia
+						</Message.Header>
+						<p>
+							Brakuje jeszcze{' '}
+							{priceFormat(minimalOrderAmount - currentBasketValue)}
+						</p>
 					</Message>
 				</div>
 			)}

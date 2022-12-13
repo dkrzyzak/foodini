@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Button, Icon, Label } from 'semantic-ui-react';
 import { RestaurantMenuItem } from '../../../api/apiModels';
-import { BasketContext } from '../../../contexts/BasketContext';
+import { useBasket } from '../../../contexts/useBasket';
 import { priceFormat } from '../../../utils/helpers';
 import * as P from './parts';
 
@@ -11,7 +11,7 @@ interface RestaurantMenuProps {
 }
 
 const RestaurantMenu = ({ menu, restaurantId }: RestaurantMenuProps) => {
-	const { addToBasket, increaseCount, decreaseCount, isInBasket } = useContext(BasketContext);
+	const { addToBasket, increaseCount, decreaseCount, isInBasket } = useBasket();
 
 	return (
 		<P.RestaurantMenuWrapper>
@@ -31,7 +31,11 @@ const RestaurantMenu = ({ menu, restaurantId }: RestaurantMenuProps) => {
 									<Icon name='minus' />
 								</Button>
 								<Button.Or text={isInBasket(name, restaurantId)} />
-								<Button icon onClick={increaseCount(name)} disabled={isInBasket(name, restaurantId) >= 5}>
+								<Button
+									icon
+									onClick={increaseCount(name)}
+									disabled={isInBasket(name, restaurantId) >= 5}
+								>
 									<Icon name='plus' />
 								</Button>
 							</Button.Group>

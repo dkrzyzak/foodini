@@ -1,15 +1,24 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Modal, Form, Input, Button, TransitionablePortal, Message } from 'semantic-ui-react';
-import { AuthContext } from '../../contexts/AuthContext';
+import React, { useEffect, useState } from 'react';
+import {
+	Modal,
+	Form,
+	Input,
+	Button,
+	TransitionablePortal,
+	Message,
+} from 'semantic-ui-react';
+import { useAuth } from '../../contexts/useAuth';
 import { loginUser, registerNewUser } from '../../api/requests';
 import * as C from './constants';
 import * as V from './validators';
 
 const LoginModal = () => {
-	const { isLoginModalOpen, setIsLoginModalOpen, setIsLoggedIn, setToken } = useContext(AuthContext);
+	const { isLoginModalOpen, setIsLoginModalOpen, setIsLoggedIn, setToken } = useAuth();
 	const [modalMode, setModalMode] = useState<C.ModalMode>('login');
 	const [loginData, setLoginData] = useState<C.LoginData>(C.initialLoginData);
-	const [registerData, setRegisterData] = useState<C.RegisterData>(C.initialRegisterData);
+	const [registerData, setRegisterData] = useState<C.RegisterData>(
+		C.initialRegisterData
+	);
 	const [formErrors, setFromErrors] = useState<C.FormErrors>();
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [errorMsg, setErrorMsg] = useState('');
@@ -40,47 +49,49 @@ const LoginModal = () => {
 		}
 	};
 
-	const onEmailChange = (modalMode: C.ModalMode) => (e: React.ChangeEvent<HTMLInputElement>) => {
-		const newValue = e.target.value;
+	const onEmailChange =
+		(modalMode: C.ModalMode) => (e: React.ChangeEvent<HTMLInputElement>) => {
+			const newValue = e.target.value;
 
-		setFromErrors((prevErrors) => ({
-			...prevErrors,
-			email: undefined,
-		}));
-
-		if (modalMode === 'login') {
-			setLoginData((prevData) => ({
-				...prevData,
-				email: newValue,
+			setFromErrors((prevErrors) => ({
+				...prevErrors,
+				email: undefined,
 			}));
-		} else {
-			setRegisterData((prevData) => ({
-				...prevData,
-				email: newValue,
-			}));
-		}
-	};
 
-	const onPasswordChange = (modalMode: C.ModalMode) => (e: React.ChangeEvent<HTMLInputElement>) => {
-		const newValue = e.target.value;
+			if (modalMode === 'login') {
+				setLoginData((prevData) => ({
+					...prevData,
+					email: newValue,
+				}));
+			} else {
+				setRegisterData((prevData) => ({
+					...prevData,
+					email: newValue,
+				}));
+			}
+		};
 
-		setFromErrors((prevErrors) => ({
-			...prevErrors,
-			password: undefined,
-		}));
+	const onPasswordChange =
+		(modalMode: C.ModalMode) => (e: React.ChangeEvent<HTMLInputElement>) => {
+			const newValue = e.target.value;
 
-		if (modalMode === 'login') {
-			setLoginData((prevData) => ({
-				...prevData,
-				password: newValue,
+			setFromErrors((prevErrors) => ({
+				...prevErrors,
+				password: undefined,
 			}));
-		} else {
-			setRegisterData((prevData) => ({
-				...prevData,
-				password: newValue,
-			}));
-		}
-	};
+
+			if (modalMode === 'login') {
+				setLoginData((prevData) => ({
+					...prevData,
+					password: newValue,
+				}));
+			} else {
+				setRegisterData((prevData) => ({
+					...prevData,
+					password: newValue,
+				}));
+			}
+		};
 
 	const onAcceptTermsChange = () => {
 		setFromErrors((prevErrors) => ({
@@ -106,7 +117,10 @@ const LoginModal = () => {
 		}
 
 		const password = modalMode === 'login' ? loginData.password : registerData.password;
+
+		// prettier-ignore
 		const { isValid: isPasswordValid, invalidationReason = '' } = V.validatePassword(password);
+
 		if (!isPasswordValid) {
 			setFromErrors((prevErrors) => ({
 				...prevErrors,
@@ -139,7 +153,11 @@ const LoginModal = () => {
 		setErrorMsg('');
 		setSuccessMsg('');
 
-		const { success, failureReason = '', token = '' } = await loginUser(loginData.email, loginData.password);
+		const {
+			success,
+			failureReason = '',
+			token = '',
+		} = await loginUser(loginData.email, loginData.password);
 
 		if (success) {
 			setSuccessMsg('Zalogowano pomyślnie!');
@@ -164,7 +182,11 @@ const LoginModal = () => {
 		setErrorMsg('');
 		setSuccessMsg('');
 
-		const { success, failureReason = '', token = '' } = await registerNewUser(registerData.email, registerData.password);
+		const {
+			success,
+			failureReason = '',
+			token = '',
+		} = await registerNewUser(registerData.email, registerData.password);
 
 		if (success) {
 			setSuccessMsg('Zarejestrowano pomyślnie!');
@@ -194,7 +216,12 @@ const LoginModal = () => {
 				duration: 200,
 			}}
 		>
-			<Modal onClose={() => setIsLoginModalOpen(false)} open dimmer='blurring' size='mini'>
+			<Modal
+				onClose={() => setIsLoginModalOpen(false)}
+				open
+				dimmer='blurring'
+				size='mini'
+			>
 				{modalMode === 'login' ? (
 					<>
 						<Modal.Header>Zaloguj się</Modal.Header>
@@ -233,17 +260,38 @@ const LoginModal = () => {
 										: {})}
 								/>
 								<Button.Group>
-									<Button color='red' type='submit' onClick={onLoginSubmit} loading={isSubmitting}>
+									<Button
+										color='red'
+										type='submit'
+										onClick={onLoginSubmit}
+										loading={isSubmitting}
+									>
 										Zaloguj się!
 									</Button>
 									<Button.Or text='lub' />
-									<Button onClick={onChangeModalMode('register')} loading={isSubmitting}>
+									<Button
+										onClick={onChangeModalMode('register')}
+										loading={isSubmitting}
+									>
 										Załóż konto!
 									</Button>
 								</Button.Group>
 
-								{successMsg && <Message success header={successMsg} onDismiss={onDismissSuccessMsg} />}
-								{errorMsg && <Message error header='Wystąpił błąd' content={errorMsg} onDismiss={onDismissErrorMsg} />}
+								{successMsg && (
+									<Message
+										success
+										header={successMsg}
+										onDismiss={onDismissSuccessMsg}
+									/>
+								)}
+								{errorMsg && (
+									<Message
+										error
+										header='Wystąpił błąd'
+										content={errorMsg}
+										onDismiss={onDismissErrorMsg}
+									/>
+								)}
 							</Form>
 						</Modal.Content>
 					</>
@@ -291,17 +339,38 @@ const LoginModal = () => {
 									error={formErrors?.acceptTerms}
 								/>
 								<Button.Group>
-									<Button color='red' type='submit' onClick={onRegistrationSubmit} loading={isSubmitting}>
+									<Button
+										color='red'
+										type='submit'
+										onClick={onRegistrationSubmit}
+										loading={isSubmitting}
+									>
 										Załóż konto!
 									</Button>
 									<Button.Or text='lub' />
-									<Button onClick={onChangeModalMode('login')} loading={isSubmitting}>
+									<Button
+										onClick={onChangeModalMode('login')}
+										loading={isSubmitting}
+									>
 										Zaloguj się!
 									</Button>
 								</Button.Group>
 
-								{successMsg && <Message success header={successMsg} onDismiss={onDismissSuccessMsg} />}
-								{errorMsg && <Message error header='Wystąpił błąd' content={errorMsg} onDismiss={onDismissErrorMsg} />}
+								{successMsg && (
+									<Message
+										success
+										header={successMsg}
+										onDismiss={onDismissSuccessMsg}
+									/>
+								)}
+								{errorMsg && (
+									<Message
+										error
+										header='Wystąpił błąd'
+										content={errorMsg}
+										onDismiss={onDismissErrorMsg}
+									/>
+								)}
 							</Form>
 						</Modal.Content>
 					</>

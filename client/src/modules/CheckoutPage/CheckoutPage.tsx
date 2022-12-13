@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { Header } from 'semantic-ui-react';
 import Cookies from 'js-cookie';
 import { getAddress, postAddress } from '../../api/requests';
-import { BasketContext } from '../../contexts/BasketContext';
 import { useAuth } from '../../contexts/useAuth';
+import { useBasket } from '../../contexts/useBasket';
 import AddressForm from './AddressForm/AddressForm';
 import { AddressFormValues } from './AddressForm/constants';
 import CheckoutSteps from './CheckoutSteps';
@@ -20,7 +20,7 @@ const CheckoutPage = () => {
 		getBasketValue,
 		getBasketWithDeliveryValue,
 		basket,
-	} = useContext(BasketContext);
+	} = useBasket();
 
 	const { isLoggedIn, token } = useAuth();
 

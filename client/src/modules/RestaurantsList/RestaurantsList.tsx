@@ -1,11 +1,7 @@
-import React, {
-	// useContext,
-	useState,
-} from 'react';
+import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
 import { Dimmer, Divider, Header, Icon, Loader } from 'semantic-ui-react';
-// import { AuthContext } from '../../contexts/AuthContext';
 import { Restaurant } from '../../api/apiModels';
 import { RestaurantsSortingOptions } from './constants';
 import { getRestaurantsData } from './helpers';
@@ -18,10 +14,13 @@ interface RestaurantsListProps {}
 // TODO: save sortBy on unmount
 
 const RestaurantsList = (props: RestaurantsListProps) => {
-	const [sortBy, setSortBy] = useState<RestaurantsSortingOptions>(RestaurantsSortingOptions.Default);
-	// const { token } = useContext(AuthContext);
-	// useMockRequest(token);
-	const { data: restaurants, isLoading } = useQuery<Restaurant[]>(['restaurants', sortBy], getRestaurantsData(sortBy));
+	const [sortBy, setSortBy] = useState<RestaurantsSortingOptions>(
+		RestaurantsSortingOptions.Default
+	);
+	const { data: restaurants, isLoading } = useQuery<Restaurant[]>(
+		['restaurants', sortBy],
+		getRestaurantsData(sortBy)
+	);
 
 	return (
 		<P.RestaurantsListWrapper>
@@ -33,7 +32,9 @@ const RestaurantsList = (props: RestaurantsListProps) => {
 				</Dimmer>
 			) : (
 				<>
-					<P.SelectRestaurantsHeading>Wybierz spośród {restaurants?.length} restauracji!</P.SelectRestaurantsHeading>
+					<P.SelectRestaurantsHeading>
+						Wybierz spośród {restaurants?.length} restauracji!
+					</P.SelectRestaurantsHeading>
 					<Divider horizontal>
 						<Header as='h4'>
 							<Icon name='sort content ascending' />
@@ -55,15 +56,23 @@ const RestaurantsList = (props: RestaurantsListProps) => {
 							<P.SingleRestaurantWrapper key={restaurant.restaurantId}>
 								<Link to={restaurant.restaurantId}>
 									<P.PictureSection>
-										<img src={restaurant.imageName} alt={restaurant.imageName} />
+										<img
+											src={restaurant.imageName}
+											alt={restaurant.imageName}
+										/>
 										<P.LogoWrapper>
-											<img src={restaurant.logoName} alt={restaurant.logoName} />
+											<img
+												src={restaurant.logoName}
+												alt={restaurant.logoName}
+											/>
 										</P.LogoWrapper>
 									</P.PictureSection>
 								</Link>
 								<P.InfoSection>
 									<h2>
-										<Link to={restaurant.restaurantId}>{restaurant.fullName}</Link>
+										<Link to={restaurant.restaurantId}>
+											{restaurant.fullName}
+										</Link>
 									</h2>
 									<h3>{restaurant.cuisineType.join(', ')}</h3>
 

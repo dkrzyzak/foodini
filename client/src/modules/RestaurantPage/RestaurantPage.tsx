@@ -1,27 +1,34 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { Link, useParams } from 'react-router-dom';
 import { Restaurant } from '../../api/apiModels';
 import { getRestaurantDetails } from '../../api/requests';
+import { useBasket } from '../../contexts/useBasket';
 import RestaurantMenu from './RestaurantMenu/RestaurantMenu';
 import * as P from './parts';
 import { useHeaderImage } from './helpers';
 import { Button, Header, Icon, Loader, Segment } from 'semantic-ui-react';
 import RestaurantInfoLabels from '../RestaurantInfoLabels/RestaurantInfoLabels';
 import Basket from '../Basket/Basket';
-import { BasketContext } from '../../contexts/BasketContext';
 
 interface RestaurantPageProps {}
 
 const RestaurantPage = (props: RestaurantPageProps) => {
 	const { id = '' } = useParams();
 	const headerImageSrc = useHeaderImage(id);
-	const { data: restaurant, isLoading } = useQuery<Restaurant | null>(['restaurant', id], () => getRestaurantDetails(id));
-	const { passCurrentMenu } = useContext(BasketContext);
+	const { data: restaurant, isLoading } = useQuery<Restaurant | null>(
+		['restaurant', id],
+		() => getRestaurantDetails(id)
+	);
+	const { passCurrentMenu } = useBasket();
 
 	useEffect(() => {
 		if (restaurant?.menu.length && passCurrentMenu) {
-			passCurrentMenu(restaurant.menu, restaurant.deliveryPrice, restaurant.minimalOrderAmount);
+			passCurrentMenu(
+				restaurant.menu,
+				restaurant.deliveryPrice,
+				restaurant.minimalOrderAmount
+			);
 		}
 		// eslint-disable-next-line
 	}, [restaurant]);
@@ -53,7 +60,10 @@ const RestaurantPage = (props: RestaurantPageProps) => {
 					/>
 
 					{restaurant.menu.length > 0 ? (
-						<RestaurantMenu menu={restaurant.menu} restaurantId={restaurant.restaurantId} />
+						<RestaurantMenu
+							menu={restaurant.menu}
+							restaurantId={restaurant.restaurantId}
+						/>
 					) : (
 						<Segment placeholder>
 							<Header icon>

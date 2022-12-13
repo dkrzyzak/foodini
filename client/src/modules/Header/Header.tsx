@@ -1,14 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Menu, Dropdown } from 'semantic-ui-react';
 import logo from '../../assets/logos/logo-color-low.png';
-import { AuthContext } from '../../contexts/AuthContext';
+import { useAuth } from '../../contexts/useAuth';
 import * as P from './parts';
 
 interface HeaderProps {}
 
 const Header = (props: HeaderProps) => {
-	const { setIsLoginModalOpen, isLoggedIn, onLogout } = useContext(AuthContext);
+	const { setIsLoginModalOpen, isLoggedIn, onLogout } = useAuth();
 
 	const onLoginClick = () => {
 		setIsLoginModalOpen(true);
@@ -31,12 +31,26 @@ const Header = (props: HeaderProps) => {
 					//  onClick={this.handleItemClick}
 				/> */}
 				<Menu.Menu position='right'>
-					<Dropdown icon='bars' text='Ustawienia' className='icon black' labeled button>
+					<Dropdown
+						icon='bars'
+						text='Ustawienia'
+						className='icon black'
+						labeled
+						button
+					>
 						<Dropdown.Menu>
 							{isLoggedIn ? (
-								<Dropdown.Item icon='sign-in' text='Wyloguj się' onClick={onLogout} />
+								<Dropdown.Item
+									icon='sign-in'
+									text='Wyloguj się'
+									onClick={onLogout}
+								/>
 							) : (
-								<Dropdown.Item icon='sign-in' text='Zaloguj się' onClick={onLoginClick} />
+								<Dropdown.Item
+									icon='sign-in'
+									text='Zaloguj się'
+									onClick={onLoginClick}
+								/>
 							)}
 
 							<Dropdown.Divider />
