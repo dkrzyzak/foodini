@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { RestaurantMenuItem } from '../api/apiModels';
+import React, { useMemo, useState } from 'react';
+import { OrderItemInfo, RestaurantMenuItem } from '../api/apiModels';
 
 interface IBasketContext {
 	basket: Record<string, number>;
@@ -11,10 +11,15 @@ interface IBasketContext {
 	isBasketEmpty: () => boolean;
 	getBasketValue: () => number;
 	getBasketWithDeliveryValue: () => number;
-	passCurrentMenu: (menu: RestaurantMenuItem[], deliveryPrice: number, minimalOrderAmount: number) => void;
+	passCurrentMenu: (
+		menu: RestaurantMenuItem[],
+		deliveryPrice: number,
+		minimalOrderAmount: number
+	) => void;
 	currentMenu: MappedMenu;
 	deliveryPrice: number;
 	minimalOrderAmount: number;
+	basketOrderItems: OrderItemInfo[];
 }
 
 type MappedMenu = Record<
@@ -36,6 +41,18 @@ const BasketProvider = ({ children }: { children: React.ReactNode }) => {
 	const [currentMenu, setCurrentMenu] = useState<MappedMenu>({});
 	const [deliveryPrice, setDeliveryPrice] = useState(0);
 	const [minimalOrderAmount, setMinimalOrderAmount] = useState(0);
+
+	const basketOrderItems: OrderItemInfo[] = useMemo(
+		() =>
+			Object.entries(basket).map(([itemName, itemQuantity]) => ({
+				itemName,
+				itemQuantity,
+				itemPrice: currentMenu[itemName].price,
+				itemDescription: currentMenu[itemName].description,
+			})),
+		// eslint-disable-next-line
+		[basket]
+	);
 
 	const isInBasket = (itemName: string, restaurantId: string): number => {
 		if (basketRestaurantId !== restaurantId) {
@@ -86,7 +103,11 @@ const BasketProvider = ({ children }: { children: React.ReactNode }) => {
 		});
 	};
 
-	const passCurrentMenu = (menu: RestaurantMenuItem[], deliveryPrice: number, minimalOrderAmount: number) => {
+	const passCurrentMenu = (
+		menu: RestaurantMenuItem[],
+		deliveryPrice: number,
+		minimalOrderAmount: number
+	) => {
 		const mappedMenu: MappedMenu = {};
 
 		menu.forEach(({ name, price, description }) => {
@@ -133,9 +154,12 @@ const BasketProvider = ({ children }: { children: React.ReactNode }) => {
 		currentMenu,
 		deliveryPrice,
 		minimalOrderAmount,
+		basketOrderItems,
 	};
 
-	return <BasketContext.Provider value={contextValue}>{children}</BasketContext.Provider>;
+	return (
+		<BasketContext.Provider value={contextValue}>{children}</BasketContext.Provider>
+	);
 };
 
 export { BasketContext, BasketProvider };

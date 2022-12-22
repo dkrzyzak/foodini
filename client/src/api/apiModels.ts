@@ -28,6 +28,33 @@ export interface Address {
 	phoneNr: string;
 }
 
+export interface OrderItemInfo {
+	itemName: string;
+	itemPrice: number;
+	itemQuantity: number;
+	itemDescription?: string;
+}
+
+export interface OrderPriceInfo {
+	orderTotalValue: number;
+	basketValue: number;
+	deliveryPrice: number;
+}
+
+export interface PostOrderData {
+	basket: OrderItemInfo[];
+	priceInfo: OrderPriceInfo;
+	address: Address;
+}
+
+export interface Order {
+	id: string;
+	timeOfOrder: string;
+	basket: OrderItemInfo[];
+	priceInfo: OrderPriceInfo;
+	address: Address;
+}
+
 export interface User {
 	email: string;
 	pointsCount: number;

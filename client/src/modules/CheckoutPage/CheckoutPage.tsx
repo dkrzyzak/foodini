@@ -10,6 +10,7 @@ import { CheckoutStep } from './constants';
 import OrderTable from './OrderTable';
 import * as P from './parts';
 import PaymentForm from './PaymentForm/PaymentForm';
+import PaymentModal from './PaymentModal/PaymentModal';
 import useAddress from './useAddress';
 
 const CheckoutPage = () => {
@@ -26,6 +27,7 @@ const CheckoutPage = () => {
 	const navigate = useNavigate();
 	const [selectedAddress, setAddress] = useState<AddressFormValues>();
 	const [checkoutStep, setCheckoutStep] = useState<CheckoutStep>(CheckoutStep.Delivery);
+	const [isPaymentModalOpen, setPaymentModalOpen] = useState(false);
 
 	const { handleInitialFormValues, saveSubmittedFormValues } = useAddress(
 		isLoggedIn,
@@ -53,6 +55,7 @@ const CheckoutPage = () => {
 	};
 
 	const onPlaceOrder = () => {
+		setPaymentModalOpen(true);
 		// make POST /order with basket and selectedAddress
 		console.log({
 			basket,
@@ -62,31 +65,38 @@ const CheckoutPage = () => {
 	};
 
 	return (
-		<P.CheckoutWrapper>
-			<P.HeaderSection>
-				<Header as='h1'>Zamów teraz!</Header>
-				<a href='#!' onClick={() => navigate(-1)}>
-					Powrót
-				</a>
-			</P.HeaderSection>
-			<OrderTable />
+		<>
+			<P.CheckoutWrapper>
+				<P.HeaderSection>
+					<Header as='h1'>Zamów teraz!</Header>
+					<a href='#!' onClick={() => navigate(-1)}>
+						Powrót
+					</a>
+				</P.HeaderSection>
+				<OrderTable />
 
-			<CheckoutSteps
-				checkoutStep={checkoutStep}
-				onReturnToDelivery={onReturnToDelivery}
-			/>
-
-			{checkoutStep === CheckoutStep.Delivery && (
-				<AddressForm
-					onConfirmAddress={onConfirmAddress}
-					initialAddress={selectedAddress}
+				<CheckoutSteps
+					checkoutStep={checkoutStep}
+					onReturnToDelivery={onReturnToDelivery}
 				/>
-			)}
 
-			{checkoutStep === CheckoutStep.Payment && (
-				<PaymentForm onPlaceOrder={onPlaceOrder} />
-			)}
-		</P.CheckoutWrapper>
+				{checkoutStep === CheckoutStep.Delivery && (
+					<AddressForm
+						onConfirmAddress={onConfirmAddress}
+						initialAddress={selectedAddress}
+					/>
+				)}
+
+				{checkoutStep === CheckoutStep.Payment && (
+					<PaymentForm onPlaceOrder={onPlaceOrder} />
+				)}
+			</P.CheckoutWrapper>
+			<PaymentModal
+				isOpen={isPaymentModalOpen}
+				setOpen={setPaymentModalOpen}
+				selectedAddress={selectedAddress!}
+			/>
+		</>
 	);
 };
 

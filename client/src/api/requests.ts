@@ -28,7 +28,7 @@ export const getRestaurantDetails = async (restaurantId: string) => {
 	}
 };
 
-interface RegisterReturnValue {
+interface AuthReturnValue {
 	success: boolean;
 	token?: string;
 	failureReason?: string;
@@ -37,7 +37,7 @@ interface RegisterReturnValue {
 export const registerNewUser = async (
 	email: string,
 	password: string
-): Promise<RegisterReturnValue> => {
+): Promise<AuthReturnValue> => {
 	try {
 		const { status, data } = await axios.post('/auth/register', {
 			email,
@@ -79,7 +79,7 @@ export const registerNewUser = async (
 export const loginUser = async (
 	email: string,
 	password: string
-): Promise<RegisterReturnValue> => {
+): Promise<AuthReturnValue> => {
 	try {
 		const { status, data } = await axios.post('/auth/login', {
 			email,
@@ -125,7 +125,7 @@ export const postAddress = async (
 	token: string
 ): Promise<boolean> => {
 	try {
-		const { status } = await axios.post('/address/', address, {
+		const { status } = await axios.post('/address', address, {
 			headers: {
 				Authorization: `Bearer ${token}`,
 			},
@@ -139,7 +139,7 @@ export const postAddress = async (
 
 export const getAddress = async (token: string) => {
 	try {
-		const { data } = await axios.get<Api.Address>('/address/', {
+		const { data } = await axios.get<Api.Address>('/address', {
 			headers: {
 				Authorization: `Bearer ${token}`,
 			},
@@ -148,6 +148,22 @@ export const getAddress = async (token: string) => {
 		return data;
 	} catch (e: unknown) {
 		return null;
+	}
+};
+
+export const postOrder = async (orderData: Api.PostOrderData, token?: string) => {
+	try {
+		const { status } = await axios.post('/order', orderData, {
+			headers: {
+				Authorization: token ? `Bearer ${token}` : '',
+				x_allow_ignore_auth: true,
+			},
+		});
+
+		console.log(status);
+	} catch (e: unknown) {
+		if (e instanceof AxiosError) {
+		}
 	}
 };
 
