@@ -1,5 +1,5 @@
 import { Restaurant } from '../../api/apiModels';
-import { getRestaurants } from '../../api/requests';
+import { getRestaurants } from '../../api/restaurantsRequests';
 import { RestaurantsSortingOptions } from './constants';
 
 export const getRestaurantsDataWithImages = async (restaurants: Restaurant[]) => {

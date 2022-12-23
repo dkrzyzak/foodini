@@ -1,5 +1,5 @@
 import Cookies from 'js-cookie';
-import { getAddress, postAddress } from '../../api/requests';
+import { getAddress, postAddress } from '../../api/addressRequests';
 import { AddressFormValues } from './AddressForm/constants';
 
 const useAddress = (

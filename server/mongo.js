@@ -66,36 +66,38 @@ const addressSchema = new Schema({
 
 const AddressModel = mongoose.model('addresses', addressSchema);
 
-const addMenu = async () => {
-	const menu = [
-		{ name: 'Chicken Burger', price: 32, description: 'pierś' },
-		{ name: 'Żurek staropolski', price: 40, description: 'żurek' },
-		{ name: 'Pizza Carpi', price: 38, description: 'włoskich' },
-		{ name: 'Pizza Pepperoni', price: 40, description: 'sera' },
-		{ name: 'Pizza Leśna', price: 45, description: 'rozmaryn' },
-		{ name: 'Frytki', price: 13 },
-		{ name: 'Woda 500ml', price: 5 },
-		{ name: 'Sok pomarańczowy 1l', price: 7 },
-	];
-
-	const restaurantId = 'apetyt-bistro';
-
-	try {
-		await RestaurantModel.updateOne({ restaurantId }, { menu });
-
-		console.log('dodano menu do restauracji', restaurantId);
-	} catch (e) {
-		console.log(e);
+const orderSchema = new Schema({
+	userEmail: String, // opcjonalny
+	placedAt: Date,
+	orderId: String,
+	basket: [{
+		itemName: String,
+		itemDescription: String,
+		itemQuantity: Number,
+		itemPrice: Number,
+	}],
+	priceInfo: {
+		basketValue: Number,
+		deliveryPrice: Number,
+		orderTotalValue: Number,
+	},
+	address: {
+		streetAndNr: String,
+		city: String,
+		postalCode: String,
+		phoneNr: String,
 	}
-};
+});
 
-// addMenu();
+const OrderModel = mongoose.model('orders', orderSchema);
+
 
 module.exports = {
 	db,
 	models: {
 		UserModel,
-		RestaurantModel,
+		OrderModel,
 		AddressModel,
+		RestaurantModel,
 	},
 };

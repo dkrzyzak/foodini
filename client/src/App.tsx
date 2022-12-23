@@ -17,6 +17,7 @@ import RestaurantPage from './modules/RestaurantPage/RestaurantPage';
 import { BasketProvider } from './contexts/BasketContext';
 import ScrollManager from './utils/ScrollManager';
 import CheckoutPage from './modules/CheckoutPage/CheckoutPage';
+import OrderPage from './modules/OrderPage/OrderPage';
 
 function App() {
 	return (
@@ -34,6 +35,7 @@ function App() {
 									<Route path='restauracje' element={<RestaurantsList />} />
 									<Route path='restauracje/:id' element={<RestaurantPage />} />
 									<Route path='/checkout' element={<CheckoutPage />} />
+									<Route path='/zamowienia/:orderId' element={<OrderPage />} />
 								</Routes>
 							</BrowserRouter>
 						</BasketProvider>

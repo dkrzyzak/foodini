@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { Link, useParams } from 'react-router-dom';
 import { Restaurant } from '../../api/apiModels';
-import { getRestaurantDetails } from '../../api/requests';
+import { getRestaurantDetails } from '../../api/restaurantsRequests';
 import { useBasket } from '../../contexts/useBasket';
 import RestaurantMenu from './RestaurantMenu/RestaurantMenu';
 import * as P from './parts';

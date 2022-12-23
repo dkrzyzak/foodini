@@ -8,7 +8,7 @@ import {
 	Message,
 } from 'semantic-ui-react';
 import { useAuth } from '../../contexts/useAuth';
-import { loginUser, registerNewUser } from '../../api/requests';
+import { loginUser, registerNewUser } from '../../api/authRequests';
 import * as C from './constants';
 import * as V from './validators';
 

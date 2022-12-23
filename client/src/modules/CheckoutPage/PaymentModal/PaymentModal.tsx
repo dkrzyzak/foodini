@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Dimmer, Icon, Loader, Message, Modal } from 'semantic-ui-react';
 import { PostOrderData } from '../../../api/apiModels';
-import { postOrder } from '../../../api/requests';
+import { postOrder } from '../../../api/ordersRequests';
 import { useAuth } from '../../../contexts/useAuth';
 import { useBasket } from '../../../contexts/useBasket';
 import { AddressFormValues } from '../AddressForm/constants';
@@ -34,15 +34,17 @@ const PaymentModal = ({ isOpen, setOpen, selectedAddress }: PaymentModalProps) =
 			},
 			address: selectedAddress,
 		};
-		await postOrder(orderData, token);
+		const { success, id } = await postOrder(orderData, token);
 
 		setTimeout(() => {
 			setLoading(false);
-			setSuccess(true);
+			setSuccess(success);
 		}, 2500);
 
 		setTimeout(() => {
-			navigate('/zamowienie/id');
+			if (success) {
+				navigate(`/zamowienia/${id}`);
+			}
 		}, 6000);
 	};
 
