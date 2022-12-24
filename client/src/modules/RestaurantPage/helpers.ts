@@ -5,7 +5,6 @@ export const getHeaderImage = async (restaurantId: string, extension = 'jpg') =>
 		const imageSrc = await import(`../../assets/restaurant-images/${restaurantId}-big.${extension}`);
 		return imageSrc.default as string;
 	} catch (e) {
-		console.log(e);
 		return '';
 	}
 };

@@ -11,9 +11,7 @@ import { Button, Header, Icon, Loader, Segment } from 'semantic-ui-react';
 import RestaurantInfoLabels from '../RestaurantInfoLabels/RestaurantInfoLabels';
 import Basket from '../Basket/Basket';
 
-interface RestaurantPageProps {}
-
-const RestaurantPage = (props: RestaurantPageProps) => {
+const RestaurantPage = () => {
 	const { id = '' } = useParams();
 	const headerImageSrc = useHeaderImage(id);
 	const { data: restaurant, isLoading } = useQuery<Restaurant | null>(

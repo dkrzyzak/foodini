@@ -70,6 +70,8 @@ const orderSchema = new Schema({
 	userEmail: String, // opcjonalny
 	placedAt: Date,
 	orderId: String,
+	restaurantId: String,
+	restaurantName: String,
 	basket: [{
 		itemName: String,
 		itemDescription: String,

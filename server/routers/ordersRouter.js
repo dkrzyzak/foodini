@@ -2,14 +2,13 @@ const express = require('express');
 const crypto = require('crypto');
 const { verifyTokenMiddleware } = require('../jwt');
 const {
-	models: { OrderModel },
+	models: { OrderModel, RestaurantModel },
 } = require('../mongo');
 
 const ordersRouter = express.Router();
 
 ordersRouter.post('/', verifyTokenMiddleware, async (req, res) => {
-	console.log(req.verifiedEmail);
-	// console.log(req.body);
+	const userEmail = req.verifiedEmail;
 
 	let id; 
 	let isUnique = true;
@@ -20,13 +19,17 @@ ordersRouter.post('/', verifyTokenMiddleware, async (req, res) => {
 		isUnique = orderWithGivenId === null;
 	} while (!isUnique);
 
+	const restaurant = await RestaurantModel.findOne({ restaurantId: req.body.restaurantId });
+
 	const newOrder = new OrderModel({
 		basket: req.body.basket,
 		address: req.body.address,
 		priceInfo: req.body.priceInfo,
+		restaurantId: req.body.restaurantId,
+		restaurantName: restaurant.fullName,
 		orderId: id,
 		placedAt: new Date(),
-		...(req.verifiedEmail ? { userEmail: req.verifiedEmail } : {}),
+		...(userEmail ? { userEmail } : {}),
 	});
 
 	try {
@@ -39,7 +42,20 @@ ordersRouter.post('/', verifyTokenMiddleware, async (req, res) => {
 });
 
 ordersRouter.get('/:orderId', verifyTokenMiddleware, async (req, res) => {
+	const orderId = req.params.orderId;
+	const userEmail = req.verifiedEmail;
+
+	const foundOrder = await OrderModel.findOne({ orderId });
+
+	if (!foundOrder) {
+		return res.status(404).end();
+	}
+
+	if (foundOrder.userEmail != userEmail) {
+		return res.status(401).end();
+	}
 	
+	res.status(200).send(foundOrder);
 })
 
 module.exports = ordersRouter;

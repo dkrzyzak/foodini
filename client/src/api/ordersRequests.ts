@@ -27,3 +27,26 @@ export const postOrder = async (orderData: Api.PostOrderData, token?: string): P
         };
 	}
 };
+
+
+
+export const getOrder = async (orderId: string, token?: string): Promise<Api.Order | null | undefined> => {
+	// situation when token was not yet set in Context, but it exists in LS
+	// we cancel request because it will fire again in a second with proper token value
+	if (!token && localStorage.getItem('jwt')) {
+		return undefined;
+	}
+
+    try {
+		const { data } = await axios.get<Api.Order>(`/order/${orderId}`, {
+			headers: {
+				Authorization: token ? `Bearer ${token}` : '',
+				x_allow_ignore_auth: true,
+			},
+		});
+
+        return data;
+	} catch (e: unknown) {
+        return null;
+	}
+}

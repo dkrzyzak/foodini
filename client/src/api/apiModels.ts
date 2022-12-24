@@ -42,14 +42,18 @@ export interface OrderPriceInfo {
 }
 
 export interface PostOrderData {
+	restaurantId: string;
 	basket: OrderItemInfo[];
 	priceInfo: OrderPriceInfo;
 	address: Address;
 }
 
 export interface Order {
-	id: string;
-	timeOfOrder: string;
+	userEmail: string;
+	orderId: string;
+	restaurantId: string;
+	restaurantName: string;
+	placedAt: Date;
 	basket: OrderItemInfo[];
 	priceInfo: OrderPriceInfo;
 	address: Address;

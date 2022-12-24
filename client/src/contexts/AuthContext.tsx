@@ -11,17 +11,17 @@ interface IAuthContext {
 	onLogout: () => void;
 }
 
-const defaultValue: IAuthContext = {
-	isLoggedIn: false,
-	setIsLoggedIn: () => {},
-	isLoginModalOpen: false,
-	setIsLoginModalOpen: () => {},
-	token: '',
-	setToken: () => {},
-	onLogout: () => {},
-};
+// const defaultValue: IAuthContext = {
+// 	isLoggedIn: false,
+// 	setIsLoggedIn: () => {},
+// 	isLoginModalOpen: false,
+// 	setIsLoginModalOpen: () => {},
+// 	token: '',
+// 	setToken: () => {},
+// 	onLogout: () => {},
+// };
 
-const AuthContext = React.createContext<IAuthContext>(defaultValue);
+const AuthContext = React.createContext<IAuthContext>({} as IAuthContext);
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
