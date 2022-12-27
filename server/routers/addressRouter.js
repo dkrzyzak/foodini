@@ -29,6 +29,10 @@ addressRouter.get('/', verifyTokenMiddleware, async (req, res) => {
 	try {
 		const address = await AddressModel.findOne({ userEmail: req.verifiedEmail });
 
+		if (!address) {
+			return res.status(404).end();
+		}
+
 		res.status(200).send({
 			streetAndNr: address.streetAndNr,
 			city: address.city,

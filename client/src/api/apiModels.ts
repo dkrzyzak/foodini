@@ -48,12 +48,17 @@ export interface PostOrderData {
 	address: Address;
 }
 
+export type OrderStatus = 'received' | 'in progress' | 'in delivery' | 'finalized';
+
 export interface Order {
 	userEmail: string;
 	orderId: string;
 	restaurantId: string;
 	restaurantName: string;
 	placedAt: Date;
+	timeElapsedInMins: number;
+	estimatedHourOfDelivery: string;
+	orderStatus: OrderStatus;
 	basket: OrderItemInfo[];
 	priceInfo: OrderPriceInfo;
 	address: Address;

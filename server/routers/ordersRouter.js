@@ -1,25 +1,29 @@
 const express = require('express');
 const crypto = require('crypto');
+const dayjs = require('dayjs');
 const { verifyTokenMiddleware } = require('../jwt');
 const {
 	models: { OrderModel, RestaurantModel },
 } = require('../mongo');
 
 const ordersRouter = express.Router();
+const MOCK_DELIVERY_TIME = process.env.MOCK_DELIVERY_TIME === 'true';
 
 ordersRouter.post('/', verifyTokenMiddleware, async (req, res) => {
 	const userEmail = req.verifiedEmail;
 
-	let id; 
+	let id;
 	let isUnique = true;
-	
+
 	do {
 		id = crypto.randomBytes(20).toString('hex');
 		const orderWithGivenId = await OrderModel.findOne({ orderId: id });
 		isUnique = orderWithGivenId === null;
 	} while (!isUnique);
 
-	const restaurant = await RestaurantModel.findOne({ restaurantId: req.body.restaurantId });
+	const restaurant = await RestaurantModel.findOne({
+		restaurantId: req.body.restaurantId,
+	});
 
 	const newOrder = new OrderModel({
 		basket: req.body.basket,
@@ -41,6 +45,34 @@ ordersRouter.post('/', verifyTokenMiddleware, async (req, res) => {
 	}
 });
 
+const getOrderStatus = (timeElapsed, estimatedDeliveryTime) => {
+	if (timeElapsed < 1) {
+		return 'received';
+	}
+
+	if (MOCK_DELIVERY_TIME) {
+		if (timeElapsed < 2) {
+			return 'in progress';
+		}
+
+		if (timeElapsed < 3) {
+			return 'in delivery';
+		}
+
+		return 'finalized';
+	}
+
+	if (timeElapsed < estimatedDeliveryTime[0]) {
+		return 'in progress';
+	}
+
+	if (timeElapsed < estimatedDeliveryTime[1]) {
+		return 'in delivery';
+	}
+
+	return 'finalized';
+};
+
 ordersRouter.get('/:orderId', verifyTokenMiddleware, async (req, res) => {
 	const orderId = req.params.orderId;
 	const userEmail = req.verifiedEmail;
@@ -54,8 +86,29 @@ ordersRouter.get('/:orderId', verifyTokenMiddleware, async (req, res) => {
 	if (foundOrder.userEmail != userEmail) {
 		return res.status(401).end();
 	}
-	
-	res.status(200).send(foundOrder);
-})
+
+	const restaurant = await RestaurantModel.findOne({
+		restaurantId: foundOrder.restaurantId,
+	});
+
+	const minutesElapsed = dayjs(new Date()).diff(foundOrder.placedAt, 'minutes');
+
+	const estimatedHourOfDelivery = dayjs(foundOrder.placedAt)
+		.add(MOCK_DELIVERY_TIME ? 3 : restaurant.waitingTimeInMins[1], 'minutes')
+		.format('HH:mm');
+
+	res.status(200).send({
+		orderId: foundOrder.orderId,
+		restaurantId: foundOrder.restaurantId,
+		restaurantName: foundOrder.restaurantName,
+		placedAt: foundOrder.placedAt,
+		basket: foundOrder.basket,
+		priceInfo: foundOrder.priceInfo,
+		address: foundOrder.address,
+		timeElapsedInMins: minutesElapsed,
+		estimatedHourOfDelivery,
+		orderStatus: getOrderStatus(minutesElapsed, restaurant.waitingTimeInMins),
+	});
+});
 
 module.exports = ordersRouter;

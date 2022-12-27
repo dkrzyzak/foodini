@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const OrderPageWrapper = styled.main`
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 `;
 
 export const HeaderImageContainer = styled.header`
@@ -18,10 +18,11 @@ export const HeaderImageContainer = styled.header`
 
 export const OrderContentContainer = styled.section`
 	width: 90%;
-	margin: 10px auto;
+	margin: 10px auto 100px;
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
+	align-items: center;
 
 	@media (min-width: 600px) {
 		width: 65%;
@@ -32,8 +33,8 @@ export const OrderContentContainer = styled.section`
 	}
 `;
 
-
 export const RestaurantName = styled.h1`
 	display: inline;
 	margin-right: 6px;
+	text-align: center;
 `;
