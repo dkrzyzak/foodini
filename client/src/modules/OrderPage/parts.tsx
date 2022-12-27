@@ -36,5 +36,7 @@ export const OrderContentContainer = styled.section`
 export const RestaurantName = styled.h1`
 	display: inline;
 	margin-right: 6px;
+	margin-top: 10px !important;
+	margin-bottom: 0;
 	text-align: center;
 `;

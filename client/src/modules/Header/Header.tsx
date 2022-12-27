@@ -40,11 +40,14 @@ const Header = (props: HeaderProps) => {
 					>
 						<Dropdown.Menu>
 							{isLoggedIn ? (
-								<Dropdown.Item
-									icon='sign-in'
-									text='Wyloguj się'
-									onClick={onLogout}
-								/>
+								<>
+									<Dropdown.Item
+										icon='sign-in'
+										text='Wyloguj się'
+										onClick={onLogout}
+									/>
+									<Dropdown.Item icon='unordered list' text='Zamówienia' />
+								</>
 							) : (
 								<Dropdown.Item
 									icon='sign-in'
@@ -52,9 +55,6 @@ const Header = (props: HeaderProps) => {
 									onClick={onLoginClick}
 								/>
 							)}
-
-							<Dropdown.Divider />
-							<Dropdown.Item icon='crosshairs' text='Zmień lokalizację' />
 						</Dropdown.Menu>
 					</Dropdown>
 				</Menu.Menu>
