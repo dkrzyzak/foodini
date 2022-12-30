@@ -12,8 +12,7 @@ interface PaymentFormProps {
 const PaymentForm = ({ onPlaceOrder }: PaymentFormProps) => {
 	const [shouldValidateOnChange, setValidateOnChange] = useState(false);
 
-	const onSubmit = (values: C.PaymentFormValues) => {
-		console.log(values);
+	const onSubmit = () => {
 		onPlaceOrder();
 	};
 
@@ -69,8 +68,6 @@ const PaymentForm = ({ onPlaceOrder }: PaymentFormProps) => {
 					</Form>
 				)}
 			</Formik>
-
-			{/* <Progress percent={20} indicating /> */}
 		</div>
 	);
 };

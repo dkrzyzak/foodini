@@ -3,9 +3,7 @@ import { Icon, Table } from 'semantic-ui-react';
 import { useBasket } from '../../contexts/useBasket';
 import { priceFormat } from '../../utils/helpers';
 
-interface OrderTableProps {}
-
-const OrderTable = (props: OrderTableProps) => {
+const OrderTable = () => {
 	const {
 		basket,
 		currentMenu,

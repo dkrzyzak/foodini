@@ -20,16 +20,10 @@ const RestaurantInfoLabels = ({
 }: RestaurantInfoLabelsProps) => {
 	return (
 		<div>
-			{/* <Popup
-				trigger={ */}
 			<RatingLabel title='Oceny'>
 				<Icon name='star' />
 				{rating} ({ratingsCount})
 			</RatingLabel>
-			{/* }
-				pinned
-				content='Oceny'
-			/> */}
 
 			<RatingLabel title='Czas dostawy'>
 				<Icon name='clock' />

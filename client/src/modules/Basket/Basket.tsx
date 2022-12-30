@@ -5,13 +5,11 @@ import { useBasket } from '../../contexts/useBasket';
 import { priceFormat } from '../../utils/helpers';
 import * as P from './parts';
 
-interface BasketProps {}
-
 const getRestaurantIdFromPathName = (pathname: string) => {
 	return pathname.replace('/restauracje/', '');
 };
 
-const Basket = (props: BasketProps) => {
+const Basket = () => {
 	// prettier-ignore
 	const { getBasketValue, isBasketEmpty, minimalOrderAmount, basketRestaurantId } = useBasket();
 	const { pathname } = useLocation();

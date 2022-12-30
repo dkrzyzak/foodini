@@ -9,11 +9,7 @@ import * as P from './parts';
 import RestaurantsSorting from './RestaurantsSorting';
 import RestaurantInfoLabels from '../RestaurantInfoLabels/RestaurantInfoLabels';
 
-interface RestaurantsListProps {}
-
-// TODO: save sortBy on unmount
-
-const RestaurantsList = (props: RestaurantsListProps) => {
+const RestaurantsList = () => {
 	const [sortBy, setSortBy] = useState<RestaurantsSortingOptions>(
 		getSortingFromLS() || RestaurantsSortingOptions.Default
 	);

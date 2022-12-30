@@ -4,14 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import * as P from './parts';
 import { Media } from '../../utils/media';
 
-interface MainPageSearchSectionProps {}
-
-const MainPageSearchSection = (props: MainPageSearchSectionProps) => {
+const MainPage = () => {
 	const navigate = useNavigate();
 	const [location, setLocation] = useState('');
 
 	const onChangeLocation = (e: React.ChangeEvent<HTMLInputElement>) => {
-		// console.log(e.target.value);
 		setLocation(e.target.value);
 	};
 
@@ -59,7 +56,12 @@ const MainPageSearchSection = (props: MainPageSearchSectionProps) => {
 								onChange={onChangeLocation}
 								onKeyDown={onKeyDown}
 							/>
-							<Button content={<span>Dalej</span>} icon='right arrow' labelPosition='right' onClick={onNextClick} />
+							<Button
+								content={<span>Dalej</span>}
+								icon='right arrow'
+								labelPosition='right'
+								onClick={onNextClick}
+							/>
 						</P.InputWrapper>
 					</Media>
 				</P.FromWrapper>
@@ -68,4 +70,4 @@ const MainPageSearchSection = (props: MainPageSearchSectionProps) => {
 	);
 };
 
-export default MainPageSearchSection;
+export default MainPage;

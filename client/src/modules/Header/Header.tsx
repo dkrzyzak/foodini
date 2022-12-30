@@ -5,9 +5,7 @@ import logo from '../../assets/logos/logo-color-low.png';
 import { useAuth } from '../../contexts/useAuth';
 import * as P from './parts';
 
-interface HeaderProps {}
-
-const Header = (props: HeaderProps) => {
+const Header = () => {
 	const { setIsLoginModalOpen, isLoggedIn, onLogout } = useAuth();
 
 	const onLoginClick = () => {

@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { getJWT as getJWTFromLS, setJWT as setJWTinLS, removeJWT as removeJWTFromLS } from '../utils/manageJWT';
+import {
+	getJWT as getTokenFromLS,
+	setJWT as setTokenInLS,
+	removeJWT as removeTokenFromLS,
+} from '../utils/manageJWT';
 
 interface IAuthContext {
 	isLoggedIn: boolean;
@@ -11,16 +15,6 @@ interface IAuthContext {
 	onLogout: () => void;
 }
 
-// const defaultValue: IAuthContext = {
-// 	isLoggedIn: false,
-// 	setIsLoggedIn: () => {},
-// 	isLoginModalOpen: false,
-// 	setIsLoginModalOpen: () => {},
-// 	token: '',
-// 	setToken: () => {},
-// 	onLogout: () => {},
-// };
-
 const AuthContext = React.createContext<IAuthContext>({} as IAuthContext);
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
@@ -30,12 +24,12 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
 	const onSetToken = (jwt: string) => {
 		setToken(jwt);
-		setJWTinLS(jwt);
+		setTokenInLS(jwt);
 	};
 
 	const onResetToken = () => {
 		setToken('');
-		removeJWTFromLS();
+		removeTokenFromLS();
 	};
 
 	const onLogout = () => {
@@ -44,7 +38,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 	};
 
 	useEffect(() => {
-		const jwt = getJWTFromLS();
+		const jwt = getTokenFromLS();
 
 		if (jwt) {
 			onSetToken(jwt);
