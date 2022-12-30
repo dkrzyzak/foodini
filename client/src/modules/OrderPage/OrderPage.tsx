@@ -30,13 +30,18 @@ const OrderPage = () => {
 		return <Navigate to='/' />;
 	}
 
+	const isYourOrder = order.isYourOrder;
+
 	return (
 		<P.OrderPageWrapper>
 			<P.HeaderImageContainer>
 				<img src={headerImageSrc} alt={order.restaurantId} />
 			</P.HeaderImageContainer>
 			<P.OrderContentContainer>
-				<P.RestaurantName>Twoje zamówienie z {order.restaurantName}</P.RestaurantName>
+				<P.RestaurantName>
+					{isYourOrder ? 'Twoje zamówienie z ' : 'Zamówienie z '}
+					{order.restaurantName}
+				</P.RestaurantName>
 				{(state?.fromOrdersList || isLoggedIn) && (
 					<Link to='..' relative='path'>
 						<h3>Powrót</h3>
@@ -53,20 +58,23 @@ const OrderPage = () => {
 				<OrderStatus orderStatus={order.orderStatus} />
 
 				<OrderTable
+					isYourOrder={isYourOrder}
 					basket={order?.basket!}
 					basketValue={order?.priceInfo.basketValue!}
 					deliveryPrice={order?.priceInfo.deliveryPrice!}
 					orderTotalValue={order?.priceInfo.orderTotalValue!}
 				/>
 
-				<AddressTable
-					streetAndNr={order?.address.streetAndNr!}
-					city={order?.address.city!}
-					postalCode={order?.address.postalCode!}
-					phoneNr={order?.address.phoneNr!}
-					orderStatus={order.orderStatus}
-					placedAt={order.placedAt}
-				/>
+				{isYourOrder && (
+					<AddressTable
+						streetAndNr={order?.address.streetAndNr!}
+						city={order?.address.city!}
+						postalCode={order?.address.postalCode!}
+						phoneNr={order?.address.phoneNr!}
+						orderStatus={order.orderStatus}
+						placedAt={order.placedAt}
+					/>
+				)}
 			</P.OrderContentContainer>
 		</P.OrderPageWrapper>
 	);

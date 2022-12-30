@@ -73,8 +73,6 @@ const getOrderStatus = (timeElapsed, estimatedDeliveryTime) => {
 	return 'finalized';
 };
 
-const mapOrder = () => {};
-
 ordersRouter.get('/', verifyTokenMiddleware, async (req, res) => {
 	const userEmail = req.verifiedEmail;
 
@@ -116,7 +114,8 @@ ordersRouter.get('/:orderId', verifyTokenMiddleware, async (req, res) => {
 		return res.status(404).end();
 	}
 
-	if (foundOrder.userEmail != userEmail) {
+	// when user is not authorized but wants to see order of some other user
+	if (!userEmail && !!foundOrder.userEmail) {
 		return res.status(401).end();
 	}
 
@@ -140,6 +139,7 @@ ordersRouter.get('/:orderId', verifyTokenMiddleware, async (req, res) => {
 		address: foundOrder.address,
 		timeElapsedInMins: minutesElapsed,
 		estimatedHourOfDelivery,
+		isYourOrder: userEmail === foundOrder.userEmail,
 		orderStatus: getOrderStatus(minutesElapsed, restaurant.waitingTimeInMins),
 	});
 });

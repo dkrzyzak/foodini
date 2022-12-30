@@ -8,10 +8,12 @@ interface OrderTableProps {
 	deliveryPrice: number;
 	orderTotalValue: number;
 	basket: OrderItemInfo[];
+	isYourOrder: boolean;
 }
 
 const OrderTable = ({
 	basket,
+	isYourOrder,
 	basketValue,
 	deliveryPrice,
 	orderTotalValue,
@@ -21,7 +23,9 @@ const OrderTable = ({
 			<Table celled striped>
 				<Table.Header>
 					<Table.Row>
-						<Table.HeaderCell colSpan='3'>Twoje zamówienie</Table.HeaderCell>
+						<Table.HeaderCell colSpan='3'>
+							{isYourOrder ? 'Twoje zamówienie' : 'Zamówienie'}
+						</Table.HeaderCell>
 					</Table.Row>
 				</Table.Header>
 

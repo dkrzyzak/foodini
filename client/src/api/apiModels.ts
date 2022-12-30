@@ -62,6 +62,7 @@ export interface Order {
 	basket: OrderItemInfo[];
 	priceInfo: OrderPriceInfo;
 	address: Address;
+	isYourOrder: boolean;
 }
 
 export interface OrderSummary {

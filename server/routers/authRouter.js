@@ -91,7 +91,6 @@ router.get('/basicData', verifyTokenMiddleware, async (req, res) => {
 	const [lastOrder] = await OrderModel.find({ userEmail })
 		.sort({ placedAt: -1 })
 		.limit(1);
-	console.log(lastOrder);
 
 	return res.status(200).send({
 		email: userEmail,
