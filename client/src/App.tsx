@@ -19,6 +19,7 @@ import ScrollManager from './utils/ScrollManager';
 import CheckoutPage from './modules/CheckoutPage/CheckoutPage';
 import OrderPage from './modules/OrderPage/OrderPage';
 import OrdersList from './modules/OrdersList/OrdersList';
+import ProfilePage from './modules/ProfilePage/ProfilePage';
 
 function App() {
 	return (
@@ -41,6 +42,7 @@ function App() {
 									<Route path='/checkout' element={<CheckoutPage />} />
 									<Route path='/zamowienia' element={<OrdersList />} />
 									<Route path='/zamowienia/:orderId' element={<OrderPage />} />
+									<Route path='/konto' element={<ProfilePage />} />
 								</Routes>
 							</BrowserRouter>
 						</BasketProvider>

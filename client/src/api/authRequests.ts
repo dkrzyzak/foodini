@@ -1,4 +1,5 @@
 import axios, { AxiosError } from 'axios';
+import { UserData } from './apiModels';
 
 interface AuthReturnValue {
 	success: boolean;
@@ -90,4 +91,18 @@ export const loginUser = async (
 		success: false,
 		failureReason: 'Nieznany błąd',
 	};
+};
+
+export const getBasicData = async (token: string): Promise<UserData | undefined> => {
+	try {
+		const { data } = await axios.get<UserData>('/auth/basicData', {
+			headers: {
+				Authorization: token ? `Bearer ${token}` : '',
+			},
+		});
+
+		return data;
+	} catch {
+		return undefined;
+	}
 };

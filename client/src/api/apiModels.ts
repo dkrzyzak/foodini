@@ -73,7 +73,10 @@ export interface OrderSummary {
 	orderTotalValue: number;
 }
 
-export interface User {
+export interface UserData {
 	email: string;
-	pointsCount: number;
+	ordersCount: number;
+	accountAgeInDays: number;
+	lastOrderRestaurantName: string;
+	address?: Address;
 }
