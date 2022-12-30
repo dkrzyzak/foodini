@@ -1,4 +1,3 @@
-import React from 'react';
 import { DropdownItemProps } from 'semantic-ui-react';
 
 export enum RestaurantsSortingOptions {
@@ -10,6 +9,7 @@ export enum RestaurantsSortingOptions {
 	Popularity = '-ratingsCount',
 }
 
+// prettier-ignore
 export const options: DropdownItemProps[] = [
 	{ key: 0, text: 'Domyślnie', value: RestaurantsSortingOptions.Default },
 	{ key: 1, text: 'Minimalna kwota zamówienia', value: RestaurantsSortingOptions.MinimalOrderAmount },
@@ -21,5 +21,5 @@ export const options: DropdownItemProps[] = [
 
 export interface RestaurantsSortingProps {
 	sortBy: RestaurantsSortingOptions | undefined;
-	setSortBy: React.Dispatch<React.SetStateAction<RestaurantsSortingOptions>>;
+	setSortBy: (sortingOption: RestaurantsSortingOptions) => void;
 }

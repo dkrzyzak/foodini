@@ -5,6 +5,7 @@ import { RestaurantsSortingOptions } from './constants';
 export const getRestaurantsDataWithImages = async (restaurants: Restaurant[]) => {
 	return await Promise.all(
 		restaurants.map(async (restaurant) => {
+			// prettier-ignore
 			try {
 				const mainImageSrc = await import(`../../assets/restaurant-images/${restaurant.imageName}`);
 				const logoImageSrc = await import(`../../assets/restaurant-images/${restaurant.logoName}`);
@@ -27,3 +28,10 @@ export const getRestaurantsData = (sortBy: RestaurantsSortingOptions) => async (
 
 	return dataWithImportedImages;
 };
+
+const lsRestaurantsSortingKey = 'sortRestaurantsBy';
+export const getSortingFromLS = () =>
+	localStorage.getItem(lsRestaurantsSortingKey) as RestaurantsSortingOptions;
+
+export const saveSortingToLS = (newSortingOption: RestaurantsSortingOptions) =>
+	localStorage.setItem(lsRestaurantsSortingKey, newSortingOption);

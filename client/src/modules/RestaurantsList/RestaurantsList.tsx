@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Dimmer, Divider, Header, Icon, Loader } from 'semantic-ui-react';
 import { Restaurant } from '../../api/apiModels';
 import { RestaurantsSortingOptions } from './constants';
-import { getRestaurantsData } from './helpers';
+import { getRestaurantsData, getSortingFromLS, saveSortingToLS } from './helpers';
 import * as P from './parts';
 import RestaurantsSorting from './RestaurantsSorting';
 import RestaurantInfoLabels from '../RestaurantInfoLabels/RestaurantInfoLabels';
@@ -15,12 +15,18 @@ interface RestaurantsListProps {}
 
 const RestaurantsList = (props: RestaurantsListProps) => {
 	const [sortBy, setSortBy] = useState<RestaurantsSortingOptions>(
-		RestaurantsSortingOptions.Default
+		getSortingFromLS() || RestaurantsSortingOptions.Default
 	);
+
 	const { data: restaurants, isLoading } = useQuery<Restaurant[]>(
 		['restaurants', sortBy],
 		getRestaurantsData(sortBy)
 	);
+
+	const onSortingOptionChange = (newValue: RestaurantsSortingOptions) => {
+		setSortBy(newValue);
+		saveSortingToLS(newValue);
+	};
 
 	return (
 		<P.RestaurantsListWrapper>
@@ -41,8 +47,7 @@ const RestaurantsList = (props: RestaurantsListProps) => {
 							Sortowanie
 						</Header>
 					</Divider>
-					<RestaurantsSorting sortBy={sortBy} setSortBy={setSortBy} />
-					{/* <RestaurantsFilters /> */}
+					<RestaurantsSorting sortBy={sortBy} setSortBy={onSortingOptionChange} />
 
 					<Divider horizontal>
 						<Header as='h4'>
