@@ -1,10 +1,10 @@
 import React from 'react';
 import { useQuery } from 'react-query';
-import { Navigate, useParams } from 'react-router-dom';
+import { Link, Navigate, useLocation, useParams } from 'react-router-dom';
 import { getOrder } from '../../api/ordersRequests';
 import { useAuth } from '../../contexts/useAuth';
 import OrderTable from './OrderTable';
-import { useHeaderImage } from '../RestaurantPage/helpers';
+import { useRestaurantImage } from '../../utils/useRestaurantImage';
 import * as P from './parts';
 import AddressTable from './AddressTable';
 import { Loader, Statistic } from 'semantic-ui-react';
@@ -12,14 +12,15 @@ import OrderStatus from './OrderStatus';
 
 const OrderPage = () => {
 	const { orderId } = useParams();
-	const { token } = useAuth();
+	const { state } = useLocation();
+	const { token, isLoggedIn } = useAuth();
 
 	// prettier-ignore
-	const { data: order, isLoading } = useQuery(['order', token], () => getOrder(orderId!, token), {
+	const { data: order, isLoading } = useQuery(['order', orderId, token], () => getOrder(orderId!, token), {
       refetchInterval: 30000, // 30sec
    });
 
-	const headerImageSrc = useHeaderImage(order?.restaurantId || '');
+	const headerImageSrc = useRestaurantImage(order?.restaurantId || '', 'xl', 'avif');
 
 	if (isLoading || order === undefined) {
 		return <Loader />;
@@ -36,6 +37,11 @@ const OrderPage = () => {
 			</P.HeaderImageContainer>
 			<P.OrderContentContainer>
 				<P.RestaurantName>Twoje zamówienie z {order.restaurantName}</P.RestaurantName>
+				{(state?.fromOrdersList || isLoggedIn) && (
+					<Link to='..' relative='path'>
+						<h3>Powrót</h3>
+					</Link>
+				)}
 
 				{order.orderStatus !== 'finalized' && (
 					<Statistic>

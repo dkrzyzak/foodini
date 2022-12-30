@@ -6,17 +6,17 @@ import { getRestaurantDetails } from '../../api/restaurantsRequests';
 import { useBasket } from '../../contexts/useBasket';
 import RestaurantMenu from './RestaurantMenu/RestaurantMenu';
 import * as P from './parts';
-import { useHeaderImage } from './helpers';
+import { useRestaurantImage } from '../../utils/useRestaurantImage';
 import { Button, Header, Icon, Loader, Segment } from 'semantic-ui-react';
 import RestaurantInfoLabels from '../RestaurantInfoLabels/RestaurantInfoLabels';
 import Basket from '../Basket/Basket';
 
 const RestaurantPage = () => {
-	const { id = '' } = useParams();
-	const headerImageSrc = useHeaderImage(id);
+	const { restaurantId = '' } = useParams();
+	const headerImageSrc = useRestaurantImage(restaurantId, 'xl', 'avif');
 	const { data: restaurant, isLoading } = useQuery<Restaurant | null>(
-		['restaurant', id],
-		() => getRestaurantDetails(id)
+		['restaurant', restaurantId],
+		() => getRestaurantDetails(restaurantId)
 	);
 	const { passCurrentMenu } = useBasket();
 

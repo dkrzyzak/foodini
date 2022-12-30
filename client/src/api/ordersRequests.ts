@@ -2,12 +2,15 @@ import axios from 'axios';
 import * as Api from './apiModels';
 
 interface PostOrderReturnValue {
-    success: boolean;
-    id?: string;
-    failureReason?: string;
+	success: boolean;
+	id?: string;
+	failureReason?: string;
 }
 
-export const postOrder = async (orderData: Api.PostOrderData, token?: string): Promise<PostOrderReturnValue> => {
+export const postOrder = async (
+	orderData: Api.PostOrderData,
+	token?: string
+): Promise<PostOrderReturnValue> => {
 	try {
 		const { data } = await axios.post('/order', orderData, {
 			headers: {
@@ -16,28 +19,29 @@ export const postOrder = async (orderData: Api.PostOrderData, token?: string): P
 			},
 		});
 
-        return {
-            success: true,
-            id: data.id,
-        }
+		return {
+			success: true,
+			id: data.id,
+		};
 	} catch (e: unknown) {
 		return {
-            success: false,
-            failureReason: 'Wystąpił błąd, za utrudnienia przepraszamy :-(',
-        };
+			success: false,
+			failureReason: 'Wystąpił błąd, za utrudnienia przepraszamy :-(',
+		};
 	}
 };
 
-
-
-export const getOrder = async (orderId: string, token?: string): Promise<Api.Order | null | undefined> => {
+export const getOrder = async (
+	orderId: string,
+	token?: string
+): Promise<Api.Order | null | undefined> => {
 	// situation when token was not yet set in Context, but it exists in LS
 	// we cancel request because it will fire again in a second with proper token value
 	if (!token && localStorage.getItem('jwt')) {
 		return undefined;
 	}
 
-    try {
+	try {
 		const { data } = await axios.get<Api.Order>(`/order/${orderId}`, {
 			headers: {
 				Authorization: token ? `Bearer ${token}` : '',
@@ -45,8 +49,30 @@ export const getOrder = async (orderId: string, token?: string): Promise<Api.Ord
 			},
 		});
 
-        return data;
+		return data;
 	} catch (e: unknown) {
-        return null;
+		return null;
 	}
-}
+};
+
+export const getOrders = async (
+	token?: string
+): Promise<Api.OrderSummary[] | null | undefined> => {
+	// situation when token was not yet set in Context, but it exists in LS
+	// we cancel request because it will fire again in a second with proper token value
+	if (!token && localStorage.getItem('jwt')) {
+		return undefined;
+	}
+
+	try {
+		const { data } = await axios.get<Api.OrderSummary[]>(`/order`, {
+			headers: {
+				Authorization: token ? `Bearer ${token}` : '',
+			},
+		});
+
+		return data;
+	} catch (e: unknown) {
+		return null;
+	}
+};

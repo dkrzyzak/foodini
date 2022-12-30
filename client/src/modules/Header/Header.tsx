@@ -20,16 +20,6 @@ const Header = (props: HeaderProps) => {
 				<P.LogoMenuItem as={NavLink} to='/'>
 					<img src={logo} alt='logo' />
 				</P.LogoMenuItem>
-				{/* <Menu.Item
-					name='messages'
-					//  active={activeItem === 'messages'}
-					//  onClick={this.handleItemClick}
-				/>
-				<Menu.Item
-					name='friends'
-					//  active={activeItem === 'friends'}
-					//  onClick={this.handleItemClick}
-				/> */}
 				<Menu.Menu position='right'>
 					<Dropdown
 						icon='bars'
@@ -42,11 +32,23 @@ const Header = (props: HeaderProps) => {
 							{isLoggedIn ? (
 								<>
 									<Dropdown.Item
+										as={NavLink}
+										to='/konto'
+										icon='user circle'
+										text='Moje konto'
+									/>
+									<Dropdown.Item
+										as={NavLink}
+										to='/zamowienia'
+										icon='unordered list'
+										text='Zamówienia'
+									/>
+									<Dropdown.Divider />
+									<Dropdown.Item
 										icon='sign-in'
 										text='Wyloguj się'
 										onClick={onLogout}
 									/>
-									<Dropdown.Item icon='unordered list' text='Zamówienia' />
 								</>
 							) : (
 								<Dropdown.Item

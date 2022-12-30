@@ -64,6 +64,15 @@ export interface Order {
 	address: Address;
 }
 
+export interface OrderSummary {
+	orderId: string;
+	restaurantName: string;
+	restaurantId: string;
+	placedAt: Date;
+	orderStatus: OrderStatus;
+	orderTotalValue: number;
+}
+
 export interface User {
 	email: string;
 	pointsCount: number;

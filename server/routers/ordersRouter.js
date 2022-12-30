@@ -73,6 +73,39 @@ const getOrderStatus = (timeElapsed, estimatedDeliveryTime) => {
 	return 'finalized';
 };
 
+const mapOrder = () => {};
+
+ordersRouter.get('/', verifyTokenMiddleware, async (req, res) => {
+	const userEmail = req.verifiedEmail;
+
+	const foundOrders = await OrderModel.find({ userEmail });
+
+	if (!foundOrders) {
+		return res.status(404).end();
+	}
+
+	const ordersSummary = await Promise.all(
+		foundOrders.map(async (order) => {
+			const restaurant = await RestaurantModel.findOne({
+				restaurantId: order.restaurantId,
+			});
+
+			const minutesElapsed = dayjs(new Date()).diff(order.placedAt, 'minutes');
+
+			return {
+				orderId: order.orderId,
+				restaurantId: order.restaurantId,
+				restaurantName: order.restaurantName,
+				placedAt: order.placedAt,
+				orderStatus: getOrderStatus(minutesElapsed, restaurant.waitingTimeInMins),
+				orderTotalValue: order.priceInfo.orderTotalValue,
+			};
+		})
+	);
+
+	res.status(200).send(ordersSummary);
+});
+
 ordersRouter.get('/:orderId', verifyTokenMiddleware, async (req, res) => {
 	const orderId = req.params.orderId;
 	const userEmail = req.verifiedEmail;

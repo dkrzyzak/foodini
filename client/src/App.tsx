@@ -18,6 +18,7 @@ import { BasketProvider } from './contexts/BasketContext';
 import ScrollManager from './utils/ScrollManager';
 import CheckoutPage from './modules/CheckoutPage/CheckoutPage';
 import OrderPage from './modules/OrderPage/OrderPage';
+import OrdersList from './modules/OrdersList/OrdersList';
 
 function App() {
 	return (
@@ -33,8 +34,12 @@ function App() {
 								<Routes>
 									<Route path='/' element={<MainPage />}></Route>
 									<Route path='restauracje' element={<RestaurantsList />} />
-									<Route path='restauracje/:id' element={<RestaurantPage />} />
+									<Route
+										path='restauracje/:restaurantId'
+										element={<RestaurantPage />}
+									/>
 									<Route path='/checkout' element={<CheckoutPage />} />
+									<Route path='/zamowienia' element={<OrdersList />} />
 									<Route path='/zamowienia/:orderId' element={<OrderPage />} />
 								</Routes>
 							</BrowserRouter>
