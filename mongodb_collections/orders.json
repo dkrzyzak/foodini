@@ -1,0 +1,241 @@
+[{
+	"_id": {
+		"$oid": "63a60758446623d380be450c"
+	},
+	"placedAt": {
+		"$date": "2022-12-23T19:54:00.323Z"
+	},
+	"orderId": "9f07d51292b298c2583f25b1b4f07fa18f3d65db",
+	"basket": [
+		{
+			"itemName": "Pizza Carpi",
+			"itemDescription": "sos z włoskich pomidorów, ser mozzarella, szynka, pieczarki",
+			"itemQuantity": 3,
+			"itemPrice": 38,
+			"_id": {
+				"$oid": "63a60758446623d380be450d"
+			}
+		}
+	],
+	"priceInfo": {
+		"basketValue": 114,
+		"deliveryPrice": 0,
+		"orderTotalValue": 114
+	},
+	"address": {
+		"streetAndNr": "Ulica 12",
+		"city": "Kraków",
+		"postalCode": "30-384",
+		"phoneNr": "412233431"
+	},
+	"__v": 0,
+	"restaurantId": "apetyt-bistro",
+	"restaurantName": "Apetyt Bistro"
+},
+{
+	"_id": {
+		"$oid": "63aad78bf3454c914c8e44a3"
+	},
+	"userEmail": "mail@test.pl",
+	"placedAt": {
+		"$date": "2022-12-27T11:31:23.705Z"
+	},
+	"orderId": "6094010d3d50998a147ac3a1566c6be7f5dc707d",
+	"restaurantId": "india-masala",
+	"restaurantName": "India Masala",
+	"basket": [
+		{
+			"itemName": "Danie z sosem Masala",
+			"itemDescription": "sos na bazie pomidorów, jogurtu i śmietany z mieszanką indyjskich przypraw",
+			"itemQuantity": 1,
+			"itemPrice": 36,
+			"_id": {
+				"$oid": "63aad78bf3454c914c8e44a4"
+			}
+		},
+		{
+			"itemName": "Butter Kurczak",
+			"itemDescription": "pierś",
+			"itemQuantity": 1,
+			"itemPrice": 44,
+			"_id": {
+				"$oid": "63aad78bf3454c914c8e44a5"
+			}
+		}
+	],
+	"priceInfo": {
+		"basketValue": 80,
+		"deliveryPrice": 0,
+		"orderTotalValue": 80
+	},
+	"address": {
+		"streetAndNr": "Zabierzów Bocheński 30",
+		"city": "Niepołomice",
+		"postalCode": "32-005",
+		"phoneNr": "123678456"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63aada4ad1e11f8edb38b95d"
+	},
+	"userEmail": "mail@test.pl",
+	"placedAt": {
+		"$date": "2022-12-27T11:43:06.466Z"
+	},
+	"orderId": "c2d06fd055a1fcb0626dda6165f840861d3b9cf8",
+	"restaurantId": "koneko-sushi",
+	"restaurantName": "Koneko Sushi",
+	"basket": [
+		{
+			"itemName": "Hosomaki awokado",
+			"itemDescription": "cienka, jednoskładnikowa rolka, danie wegetariańskie",
+			"itemQuantity": 1,
+			"itemPrice": 15,
+			"_id": {
+				"$oid": "63aada4ad1e11f8edb38b95e"
+			}
+		},
+		{
+			"itemName": "Kasai set 44 szt.",
+			"itemDescription": "Dragon roll - 15 szt, Uramaki łosoś - 15szt, Futomaki tuńczyk philadelphia - 14szt",
+			"itemQuantity": 1,
+			"itemPrice": 156,
+			"_id": {
+				"$oid": "63aada4ad1e11f8edb38b95f"
+			}
+		}
+	],
+	"priceInfo": {
+		"basketValue": 171,
+		"deliveryPrice": 5,
+		"orderTotalValue": 176
+	},
+	"address": {
+		"streetAndNr": "Zabierzów Bocheński 30",
+		"city": "Niepołomice",
+		"postalCode": "32-005",
+		"phoneNr": "123678456"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63aee9786f167925af809018"
+	},
+	"userEmail": "mail@test.pl",
+	"placedAt": {
+		"$date": "2022-12-30T13:36:56.607Z"
+	},
+	"orderId": "771db9365445f49e6ad29c156706a6ac89d2ea02",
+	"restaurantId": "cynamon",
+	"restaurantName": "Cynamon",
+	"basket": [
+		{
+			"itemName": "Ciastko czekoladowe duże",
+			"itemQuantity": 2,
+			"itemPrice": 15.9,
+			"_id": {
+				"$oid": "63aee9786f167925af809019"
+			}
+		},
+		{
+			"itemName": "Ciastko z nutellą duże",
+			"itemQuantity": 1,
+			"itemPrice": 15.9,
+			"_id": {
+				"$oid": "63aee9786f167925af80901a"
+			}
+		},
+		{
+			"itemName": "Sok z grejpfruta",
+			"itemQuantity": 1,
+			"itemPrice": 16.9,
+			"_id": {
+				"$oid": "63aee9786f167925af80901b"
+			}
+		},
+		{
+			"itemName": "Lemoniada truskawkowa",
+			"itemQuantity": 1,
+			"itemPrice": 13.9,
+			"_id": {
+				"$oid": "63aee9786f167925af80901c"
+			}
+		}
+	],
+	"priceInfo": {
+		"basketValue": 78.5,
+		"deliveryPrice": 4.99,
+		"orderTotalValue": 83.49
+	},
+	"address": {
+		"streetAndNr": "Zabierzów Bocheński 32",
+		"city": "Niepołomice",
+		"postalCode": "32-005",
+		"phoneNr": "123678456"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63af5a1323260d2d91514cef"
+	},
+	"userEmail": "mail@test.pl",
+	"placedAt": {
+		"$date": "2022-12-30T21:37:23.964Z"
+	},
+	"orderId": "70370362df743d145ec18241dc0665744a187e5a",
+	"restaurantId": "trailer-park-burgers",
+	"restaurantName": "Trailer Park Burgers",
+	"basket": [
+		{
+			"itemName": "Chicken Burger",
+			"itemDescription": "bułka, kurczak, sałata, czerwona cebula, pikle, pomidor, sos miodowo-musztardowy, sos classic",
+			"itemQuantity": 1,
+			"itemPrice": 32,
+			"_id": {
+				"$oid": "63af5a1323260d2d91514cf0"
+			}
+		},
+		{
+			"itemName": "TPB Burger",
+			"itemDescription": "bułka, wołowina 100%, ser cheddar, krążki cebulowe, sałata, pikle, czerwona cebul, sos BBQ",
+			"itemQuantity": 1,
+			"itemPrice": 37,
+			"_id": {
+				"$oid": "63af5a1323260d2d91514cf1"
+			}
+		},
+		{
+			"itemName": "Frytki",
+			"itemQuantity": 1,
+			"itemPrice": 13,
+			"_id": {
+				"$oid": "63af5a1323260d2d91514cf2"
+			}
+		},
+		{
+			"itemName": "Mirinda 0,5l",
+			"itemQuantity": 1,
+			"itemPrice": 8,
+			"_id": {
+				"$oid": "63af5a1323260d2d91514cf3"
+			}
+		}
+	],
+	"priceInfo": {
+		"basketValue": 90,
+		"deliveryPrice": 5,
+		"orderTotalValue": 95
+	},
+	"address": {
+		"streetAndNr": "Zabierzów Bocheński 32",
+		"city": "Niepołomice",
+		"postalCode": "32-005",
+		"phoneNr": "123678456"
+	},
+	"__v": 0
+}]
+

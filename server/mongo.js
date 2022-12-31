@@ -15,7 +15,6 @@ const userSchema = new Schema({
 	email: String,
 	password: String,
 	created: { type: Date, default: Date.now },
-	pointsCount: Number,
 	jwt: String,
 });
 
@@ -72,12 +71,14 @@ const orderSchema = new Schema({
 	orderId: String,
 	restaurantId: String,
 	restaurantName: String,
-	basket: [{
-		itemName: String,
-		itemDescription: String,
-		itemQuantity: Number,
-		itemPrice: Number,
-	}],
+	basket: [
+		{
+			itemName: String,
+			itemDescription: String,
+			itemQuantity: Number,
+			itemPrice: Number,
+		},
+	],
 	priceInfo: {
 		basketValue: Number,
 		deliveryPrice: Number,
@@ -88,11 +89,10 @@ const orderSchema = new Schema({
 		city: String,
 		postalCode: String,
 		phoneNr: String,
-	}
+	},
 });
 
 const OrderModel = mongoose.model('orders', orderSchema);
-
 
 module.exports = {
 	db,

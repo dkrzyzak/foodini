@@ -1,0 +1,871 @@
+[{
+	"_id": {
+		"$oid": "637fa6b7be110e465b4f9195"
+	},
+	"restaurantId": "apetyt-bistro",
+	"fullName": "Apetyt Bistro",
+	"rating": 4.8,
+	"cuisineType": [
+		"włoska",
+		"polska"
+	],
+	"minimalOrderAmount": 79,
+	"deliveryPrice": 0,
+	"waitingTimeInMins": [
+		30,
+		55
+	],
+	"imageName": "apetyt-bistro.jpg",
+	"__v": 0,
+	"logoName": "apetyt-bistro-logo.png",
+	"ratingsCount": 9950,
+	"menu": [
+		{
+			"name": "Pierś panierowania",
+			"price": 41,
+			"description": "pierś panierowana 150g",
+			"_id": {
+				"$oid": "6391172a312d580a97b4b87e"
+			}
+		},
+		{
+			"name": "Żurek staropolski",
+			"price": 40,
+			"description": "żurek staropolski 415g",
+			"_id": {
+				"$oid": "6391172a312d580a97b4b87f"
+			}
+		},
+		{
+			"name": "Pizza Carpi",
+			"price": 38,
+			"description": "sos z włoskich pomidorów, ser mozzarella, szynka, pieczarki",
+			"_id": {
+				"$oid": "6391172a312d580a97b4b880"
+			}
+		},
+		{
+			"name": "Pizza Pepperoni",
+			"price": 40,
+			"description": "sos z włoskich pomidorów, ser mozzarella, podwójne peperoni pomiędzy dwoma warstwami sera",
+			"_id": {
+				"$oid": "6391172a312d580a97b4b881"
+			}
+		},
+		{
+			"name": "Pizza Leśna",
+			"price": 45,
+			"description": "ser mozzarella, sos z włoskich pomidorów, czosnek, duszone kurki, podgrzybki, szynka, pieczarki, rozmaryn",
+			"_id": {
+				"$oid": "6391172a312d580a97b4b882"
+			}
+		},
+		{
+			"name": "Frytki belgijskie",
+			"price": 25,
+			"description": "frytki belgijskie 190g",
+			"_id": {
+				"$oid": "6391172a312d580a97b4b883"
+			}
+		},
+		{
+			"name": "Woda 500ml",
+			"price": 5,
+			"_id": {
+				"$oid": "6391172a312d580a97b4b884"
+			}
+		},
+		{
+			"name": "Sok pomarańczowy 1l",
+			"price": 7,
+			"_id": {
+				"$oid": "6391172a312d580a97b4b885"
+			}
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "6380e255f8cea7b5e9b742d5"
+	},
+	"restaurantId": "north-fish",
+	"fullName": "North Fish",
+	"rating": 3.7,
+	"ratingsCount": 452,
+	"cuisineType": [
+		"ryby"
+	],
+	"minimalOrderAmount": 30,
+	"deliveryPrice": 4.99,
+	"waitingTimeInMins": [
+		50,
+		60
+	],
+	"imageName": "north-fish.jpg",
+	"logoName": "north-fish-logo.png",
+	"__v": 0,
+	"menu": [
+		{
+			"name": "Fish&Chips z mintajem",
+			"price": 31.99,
+			"description": "Filet z mintaja w panierce, podany z autorskimi frytkami i sałatką coleslaw",
+			"_id": {
+				"$oid": "639116554243704cb5b789e1"
+			}
+		},
+		{
+			"name": "Łosoś norweski grilowany",
+			"price": 52.98,
+			"description": "Duża porcja fileta z łososia norweskiego",
+			"_id": {
+				"$oid": "639116554243704cb5b789e2"
+			}
+		},
+		{
+			"name": "Tortilla z pieca z łososiem",
+			"price": 18.99,
+			"description": "Łosoś, szpinak, suszone pomidory, ser feta, sos ziołow-czosnkowy",
+			"_id": {
+				"$oid": "639116554243704cb5b789e3"
+			}
+		},
+		{
+			"name": "Dorsz KĄSKI BIG",
+			"price": 30.99,
+			"description": "Kawałki dorsza w chrupiącej panierce 8 szt. x 20 g, sos tatarski",
+			"_id": {
+				"$oid": "639116554243704cb5b789e4"
+			}
+		},
+		{
+			"name": "Fishburger",
+			"price": 18.99,
+			"description": "Bułka piwna z posypką z pszenicy durum, świeżym mixem sałat, kawałkiem mintaja w panierce, sałatką szwedzką i prażoną cebulką",
+			"_id": {
+				"$oid": "639116554243704cb5b789e5"
+			}
+		},
+		{
+			"name": "Miseczka frytek",
+			"price": 8.99,
+			"description": "Miseczka frytek 120g",
+			"_id": {
+				"$oid": "639116554243704cb5b789e6"
+			}
+		},
+		{
+			"name": "Coca Cola 500ml",
+			"price": 7.49,
+			"_id": {
+				"$oid": "639116554243704cb5b789e7"
+			}
+		},
+		{
+			"name": "Lemoniada  400ml",
+			"price": 11.49,
+			"description": "Przygotowywana na miejscu naturalna lemoniada na bazie cytryn i pomarańczy - butelka",
+			"_id": {
+				"$oid": "639116554243704cb5b789e8"
+			}
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "6380e2d1521096c1ba5612be"
+	},
+	"restaurantId": "trailer-park-burgers",
+	"fullName": "Trailer Park Burgers",
+	"rating": 4.5,
+	"ratingsCount": 44,
+	"cuisineType": [
+		"amerykańska"
+	],
+	"minimalOrderAmount": 40,
+	"deliveryPrice": 5,
+	"waitingTimeInMins": [
+		65,
+		90
+	],
+	"imageName": "trailer-park-burgers.jpg",
+	"logoName": "trailer-park-burgers-logo.png",
+	"__v": 0,
+	"menu": [
+		{
+			"name": "Burger Classic",
+			"price": 28,
+			"description": "bułka, wołowina 100g, sałata, pomidor, pikle, czerwona cebula, sos classic",
+			"_id": {
+				"$oid": "63920a61cc999847ade54b4a"
+			}
+		},
+		{
+			"name": "Chicken Burger",
+			"price": 32,
+			"description": "bułka, kurczak, sałata, czerwona cebula, pikle, pomidor, sos miodowo-musztardowy, sos classic",
+			"_id": {
+				"$oid": "63920a61cc999847ade54b4b"
+			}
+		},
+		{
+			"name": "Burger Hot",
+			"price": 34,
+			"description": "bułka, wołowina 100%, salami, sałata, czerwone jalapeno, czerwona cebula, nachosy, sos hot, sos classic",
+			"_id": {
+				"$oid": "63920a61cc999847ade54b4c"
+			}
+		},
+		{
+			"name": "TPB Burger",
+			"price": 37,
+			"description": "bułka, wołowina 100%, ser cheddar, krążki cebulowe, sałata, pikle, czerwona cebul, sos BBQ",
+			"_id": {
+				"$oid": "63920a61cc999847ade54b4d"
+			}
+		},
+		{
+			"name": "Baby Burger",
+			"price": 19,
+			"description": "bułka, wołowina, ser cheddar, ketchup, prażona cebulka",
+			"_id": {
+				"$oid": "63920a61cc999847ade54b4e"
+			}
+		},
+		{
+			"name": "Frytki",
+			"price": 13,
+			"_id": {
+				"$oid": "63920a61cc999847ade54b4f"
+			}
+		},
+		{
+			"name": "Mirinda 0,5l",
+			"price": 8,
+			"_id": {
+				"$oid": "63920a61cc999847ade54b50"
+			}
+		},
+		{
+			"name": "Sok porzeczkowy Tymbark 0,33l",
+			"price": 5,
+			"_id": {
+				"$oid": "63920a61cc999847ade54b51"
+			}
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "6380e3b72bab219bd575337b"
+	},
+	"restaurantId": "india-masala",
+	"fullName": "India Masala",
+	"rating": 4.7,
+	"ratingsCount": 2665,
+	"cuisineType": [
+		"indyjska"
+	],
+	"minimalOrderAmount": 49,
+	"deliveryPrice": 0,
+	"waitingTimeInMins": [
+		30,
+		55
+	],
+	"imageName": "india-masala.jpg",
+	"logoName": "india-masala-logo.png",
+	"__v": 0,
+	"menu": [
+		{
+			"name": "Danie z sosem Masala",
+			"price": 36,
+			"description": "sos na bazie pomidorów, jogurtu i śmietany z mieszanką indyjskich przypraw",
+			"_id": {
+				"$oid": "63920b6e439ceb34b5012aea"
+			}
+		},
+		{
+			"name": "Danie z sosem Curry",
+			"price": 33,
+			"description": "sos na bazie pomidorów z cebulą, kolendrą, kminkiem i zielonym kardamonem",
+			"_id": {
+				"$oid": "63920b6e439ceb34b5012aeb"
+			}
+		},
+		{
+			"name": "Butter Kurczak",
+			"price": 44,
+			"description": "pierś",
+			"_id": {
+				"$oid": "63920b6e439ceb34b5012aec"
+			}
+		},
+		{
+			"name": "Chicken Samosa 2szt",
+			"price": 22,
+			"description": "Indyjskie pierożki z pikantnym nadzieniem z kurczaka pakora 2 szt.",
+			"_id": {
+				"$oid": "63920b6e439ceb34b5012aed"
+			}
+		},
+		{
+			"name": "Papadams",
+			"price": 6,
+			"description": "chrupiące cienkie chipsy z indyjskiej mąki, 1 szt.",
+			"_id": {
+				"$oid": "63920b6e439ceb34b5012aee"
+			}
+		},
+		{
+			"name": "Garlic Naan",
+			"price": 16,
+			"description": "pieczywo z dodatkiem czosnku",
+			"_id": {
+				"$oid": "63920b6e439ceb34b5012aef"
+			}
+		},
+		{
+			"name": "Nimbu Pani 0,3l",
+			"price": 9,
+			"description": "indyjska lemoniada z dodatkiem świeżego soku z cytryn z solą, cukrem i przyprawami",
+			"_id": {
+				"$oid": "63920b6e439ceb34b5012af0"
+			}
+		},
+		{
+			"name": "Woda 500ml",
+			"price": 5,
+			"_id": {
+				"$oid": "63920b6e439ceb34b5012af1"
+			}
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "6380e46fdf7b8e9b987a0693"
+	},
+	"restaurantId": "koneko-sushi",
+	"fullName": "Koneko Sushi",
+	"rating": 4.9,
+	"ratingsCount": 198,
+	"cuisineType": [
+		"sushi"
+	],
+	"minimalOrderAmount": 60,
+	"deliveryPrice": 5,
+	"waitingTimeInMins": [
+		25,
+		55
+	],
+	"imageName": "koneko-sushi.jpg",
+	"logoName": "koneko-sushi-logo.png",
+	"__v": 0,
+	"menu": [
+		{
+			"name": "Sakura set 22 szt.",
+			"price": 72,
+			"description": "futomaki łosoś philadelphia - 12szt, futomaki paluszek krabowy w tempurze - 10 szt.",
+			"_id": {
+				"$oid": "63920c8daea354bfd4094f79"
+			}
+		},
+		{
+			"name": "Kasai set 44 szt.",
+			"price": 156,
+			"description": "Dragon roll - 15 szt, Uramaki łosoś - 15szt, Futomaki tuńczyk philadelphia - 14szt",
+			"_id": {
+				"$oid": "63920c8daea354bfd4094f7a"
+			}
+		},
+		{
+			"name": "Hosomaki awokado",
+			"price": 15,
+			"description": "cienka, jednoskładnikowa rolka, danie wegetariańskie",
+			"_id": {
+				"$oid": "63920c8daea354bfd4094f7b"
+			}
+		},
+		{
+			"name": "Uramaki łosoś pieczony",
+			"price": 36,
+			"description": "serek philadelphia, ogórek, kampio, pieczony łosoś, awokado, sezam, sos kabayaki",
+			"_id": {
+				"$oid": "63920c8daea354bfd4094f7c"
+			}
+		},
+		{
+			"name": "Wakame no sunomono",
+			"price": 16,
+			"description": "sałatka ze świeżych glonów wakame, ogórka, marynowanej rzepy w zalewie z octu ryżowego",
+			"_id": {
+				"$oid": "63920c8daea354bfd4094f7d"
+			}
+		},
+		{
+			"name": "Nigiri awokado",
+			"price": 13,
+			"description": "owalny kawałek ryżu z dodatkiem, danie wegetariańskie",
+			"_id": {
+				"$oid": "63920c8daea354bfd4094f7e"
+			}
+		},
+		{
+			"name": "Imbir",
+			"price": 3,
+			"_id": {
+				"$oid": "63920c8daea354bfd4094f7f"
+			}
+		},
+		{
+			"name": "Kombucha BIO 330ml",
+			"price": 16,
+			"description": "kombucha o smaku mango plus marakuja bit organiczna herbata fermentowana i żywa",
+			"_id": {
+				"$oid": "63920c8daea354bfd4094f80"
+			}
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "6380e4c134a28103afd927c8"
+	},
+	"restaurantId": "cynamon",
+	"fullName": "Cynamon",
+	"rating": 4.1,
+	"ratingsCount": 65,
+	"cuisineType": [
+		"desery"
+	],
+	"minimalOrderAmount": 30,
+	"deliveryPrice": 4.99,
+	"waitingTimeInMins": [
+		50,
+		60
+	],
+	"imageName": "cynamon.jpg",
+	"logoName": "cynamon-logo.png",
+	"__v": 0,
+	"menu": [
+		{
+			"name": "Ciastko czekoladowe duże",
+			"price": 15.9,
+			"_id": {
+				"$oid": "63920d660570d7fd30290356"
+			}
+		},
+		{
+			"name": "3x ciastko cynamonowe z dodatkami",
+			"price": 25,
+			"description": "wiśnia + jabłko + pekan",
+			"_id": {
+				"$oid": "63920d660570d7fd30290357"
+			}
+		},
+		{
+			"name": "Duże ciastko cynamonowe i napój",
+			"price": 19.9,
+			"_id": {
+				"$oid": "63920d660570d7fd30290358"
+			}
+		},
+		{
+			"name": "Ciastko z nutellą duże",
+			"price": 15.9,
+			"_id": {
+				"$oid": "63920d660570d7fd30290359"
+			}
+		},
+		{
+			"name": "Gofr z bitą śmietaną",
+			"price": 16,
+			"_id": {
+				"$oid": "63920d660570d7fd3029035a"
+			}
+		},
+		{
+			"name": "Latte macchiato",
+			"price": 16.9,
+			"_id": {
+				"$oid": "63920d660570d7fd3029035b"
+			}
+		},
+		{
+			"name": "Sok z grejpfruta",
+			"price": 16.9,
+			"_id": {
+				"$oid": "63920d660570d7fd3029035c"
+			}
+		},
+		{
+			"name": "Lemoniada truskawkowa",
+			"price": 13.9,
+			"_id": {
+				"$oid": "63920d660570d7fd3029035d"
+			}
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "6380e513f8d0a7499dcd2bdf"
+	},
+	"restaurantId": "royal-curry",
+	"fullName": "Royal Curry",
+	"rating": 4.6,
+	"ratingsCount": 366,
+	"cuisineType": [
+		"indyjska"
+	],
+	"minimalOrderAmount": 70,
+	"deliveryPrice": 4,
+	"waitingTimeInMins": [
+		30,
+		55
+	],
+	"imageName": "royal-curry.jpg",
+	"logoName": "royal-curry-logo.png",
+	"__v": 0,
+	"menu": [
+		{
+			"name": "Butter chicken",
+			"price": 34,
+			"description": "pieczony kurczak gotowany w sosie z orzechów nerkowca, pomidorów z masłem, śmietaną i indyjskimi przyprawami",
+			"_id": {
+				"$oid": "639112d2066c907b2b6e6da1"
+			}
+		},
+		{
+			"name": "Chicken samosa",
+			"price": 17,
+			"description": "chrupiące trójkątne pierożki z nadzieniem z ziemniaków, kurczaka i dodatkiem aromatycznych przypraw indyjskich",
+			"_id": {
+				"$oid": "639112d2066c907b2b6e6da2"
+			}
+		},
+		{
+			"name": "Masala papad",
+			"price": 13,
+			"description": "chrupiące placki Papadam podawane z drobno pokrojoną cebulą, ogórkiem, pomidorem i przyprawą chat masala",
+			"_id": {
+				"$oid": "639112d2066c907b2b6e6da3"
+			}
+		},
+		{
+			"name": "Fish tikka",
+			"price": 45,
+			"description": "kawałki łososia marynowane w jogurcie z przyprawami indyjskimi, cebulą i papryką oraz pieczone w piecu tandoor",
+			"_id": {
+				"$oid": "639112d2066c907b2b6e6da4"
+			}
+		},
+		{
+			"name": "Garlic naan",
+			"price": 14,
+			"description": "tradycyjny indyjski chleb z czosnkiem",
+			"_id": {
+				"$oid": "639112d2066c907b2b6e6da5"
+			}
+		},
+		{
+			"name": "Tandoori roti",
+			"price": 8,
+			"description": "indyjski chlebek z mąki razowej pieczony w piecu tandoor",
+			"_id": {
+				"$oid": "639112d2066c907b2b6e6da6"
+			}
+		},
+		{
+			"name": "Sweet Lassi 0,2l",
+			"price": 14,
+			"description": "indyjski koktajl jogurtowy słodki",
+			"_id": {
+				"$oid": "639112d2066c907b2b6e6da7"
+			}
+		},
+		{
+			"name": "Mirinda Orange 0,2l",
+			"price": 6,
+			"_id": {
+				"$oid": "639112d2066c907b2b6e6da8"
+			}
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "6380e66452a528f26b76eba7"
+	},
+	"restaurantId": "lagrande-pizza",
+	"fullName": "LaGrande Pizza",
+	"rating": 4.4,
+	"ratingsCount": 5054,
+	"cuisineType": [
+		"włoska",
+		"pizza"
+	],
+	"minimalOrderAmount": 25,
+	"deliveryPrice": 3,
+	"waitingTimeInMins": [
+		20,
+		45
+	],
+	"imageName": "lagrande-pizza.jpg",
+	"logoName": "lagrande-pizza-logo.png",
+	"__v": 0,
+	"menu": [
+		{
+			"name": "Pizza Parma",
+			"price": 36.9,
+			"description": "z sosem pomidorowym, serem mozzarellą, szynką parmeńską, rukolą i serem parmezan",
+			"_id": {
+				"$oid": "6391136d49e31bda6573f41c"
+			}
+		},
+		{
+			"name": "Pizza Cztery Sery",
+			"price": 39.9,
+			"description": "z sosem pomidorowym, serem mozzarellą, serem mozzarella, serem pleśniowym, serem camembert i serem feta",
+			"_id": {
+				"$oid": "6391136d49e31bda6573f41d"
+			}
+		},
+		{
+			"name": "Pizza Warszawska",
+			"price": 35.9,
+			"description": "z sosem pomidorowym, serem mozzarellą, salami, kabanosem, cebulą czerwoną i serem wędzonym",
+			"_id": {
+				"$oid": "6391136d49e31bda6573f41e"
+			}
+		},
+		{
+			"name": "Pizza Salami [50cm]",
+			"price": 49.99,
+			"description": "z sosem pomidorowym, serem mozzarellą, salami",
+			"_id": {
+				"$oid": "6391136d49e31bda6573f41f"
+			}
+		},
+		{
+			"name": "Ketchup 50ml",
+			"price": 3,
+			"_id": {
+				"$oid": "6391136d49e31bda6573f420"
+			}
+		},
+		{
+			"name": "Sos czosnkowy 50ml",
+			"price": 3,
+			"_id": {
+				"$oid": "6391136d49e31bda6573f421"
+			}
+		},
+		{
+			"name": "Pepsi 0,85l",
+			"price": 7.5,
+			"_id": {
+				"$oid": "6391136d49e31bda6573f422"
+			}
+		},
+		{
+			"name": "Tymbark pomarańcza 1l",
+			"price": 7,
+			"_id": {
+				"$oid": "6391136d49e31bda6573f423"
+			}
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "6380e6ae187e1fadbc320cd8"
+	},
+	"restaurantId": "sushi-craft",
+	"fullName": "Sushi Craft",
+	"rating": 4.8,
+	"ratingsCount": 1386,
+	"cuisineType": [
+		"sushi"
+	],
+	"minimalOrderAmount": 100,
+	"deliveryPrice": 0,
+	"waitingTimeInMins": [
+		65,
+		90
+	],
+	"imageName": "sushi-craft.jpg",
+	"logoName": "sushi-craft-logo.png",
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "6380e76abefb71daca57e8f7"
+	},
+	"restaurantId": "kalejdoskop",
+	"fullName": "Kalejdoskop",
+	"rating": 4.5,
+	"ratingsCount": 787,
+	"cuisineType": [
+		"polska"
+	],
+	"minimalOrderAmount": 61,
+	"deliveryPrice": 7,
+	"waitingTimeInMins": [
+		45,
+		70
+	],
+	"imageName": "kalejdoskop.jpg",
+	"logoName": "kalejdoskop-logo.png",
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "6380e7ab93ce97ca5351af75"
+	},
+	"restaurantId": "efes-kebab",
+	"fullName": "EFES Kebab",
+	"rating": 4.1,
+	"ratingsCount": 7120,
+	"cuisineType": [
+		"kebab"
+	],
+	"minimalOrderAmount": 35,
+	"deliveryPrice": 8.5,
+	"waitingTimeInMins": [
+		50,
+		75
+	],
+	"imageName": "efes-kebab.jpg",
+	"logoName": "efes-kebab-logo.png",
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "6380e82723af906c5cb8928a"
+	},
+	"restaurantId": "u-szwagra",
+	"fullName": "U Szwagra",
+	"rating": 4.1,
+	"ratingsCount": 1994,
+	"cuisineType": [
+		"kebab",
+		"amerykańska"
+	],
+	"minimalOrderAmount": 35,
+	"deliveryPrice": 4.99,
+	"waitingTimeInMins": [
+		20,
+		45
+	],
+	"imageName": "u-szwagra.jpg",
+	"logoName": "u-szwagra-logo.png",
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "6380e89237752cdc5e851b87"
+	},
+	"restaurantId": "food-up",
+	"fullName": "Food Up!",
+	"rating": 4.7,
+	"ratingsCount": 780,
+	"cuisineType": [
+		"pizza",
+		"amerykańska"
+	],
+	"minimalOrderAmount": 35,
+	"deliveryPrice": 4,
+	"waitingTimeInMins": [
+		15,
+		40
+	],
+	"imageName": "food-up.jpg",
+	"logoName": "food-up-logo.png",
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "6380e8dd05caa00a26ef01eb"
+	},
+	"restaurantId": "ohayo-sushi",
+	"fullName": "Ohayo Sushi",
+	"rating": 4.9,
+	"ratingsCount": 899,
+	"cuisineType": [
+		"sushi"
+	],
+	"minimalOrderAmount": 50,
+	"deliveryPrice": 5,
+	"waitingTimeInMins": [
+		65,
+		90
+	],
+	"imageName": "ohayo-sushi.jpg",
+	"logoName": "ohayo-sushi-logo.png",
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "6380e93fe902621cb1873631"
+	},
+	"restaurantId": "serce-na-widelcu",
+	"fullName": "Serce Na Widelcu",
+	"rating": 4.4,
+	"ratingsCount": 521,
+	"cuisineType": [
+		"desery"
+	],
+	"minimalOrderAmount": 45,
+	"deliveryPrice": 8,
+	"waitingTimeInMins": [
+		70,
+		95
+	],
+	"imageName": "serce-na-widelcu.jpg",
+	"logoName": "serce-na-widelcu-logo.png",
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "6380e98ed8f76ea1fdcb4240"
+	},
+	"restaurantId": "fabryka-pizzy",
+	"fullName": "Fabryka Pizzy",
+	"rating": 4.5,
+	"ratingsCount": 561,
+	"cuisineType": [
+		"pizza",
+		"włoska"
+	],
+	"minimalOrderAmount": 35,
+	"deliveryPrice": 6,
+	"waitingTimeInMins": [
+		40,
+		65
+	],
+	"imageName": "fabryka-pizzy.jpg",
+	"logoName": "fabryka-pizzy-logo.png",
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "6380e9cff855819617e8e2d5"
+	},
+	"restaurantId": "kebab-king",
+	"fullName": "Kebab King",
+	"rating": 3.8,
+	"ratingsCount": 310,
+	"cuisineType": [
+		"kebab"
+	],
+	"minimalOrderAmount": 25,
+	"deliveryPrice": 5.5,
+	"waitingTimeInMins": [
+		30,
+		55
+	],
+	"imageName": "kebab-king.jpg",
+	"logoName": "kebab-king-logo.png",
+	"__v": 0
+}]
+

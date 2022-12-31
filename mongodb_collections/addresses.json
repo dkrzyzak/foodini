@@ -1,0 +1,23 @@
+[{
+	"_id": {
+		"$oid": "6398d47df0d02d45f9135739"
+	},
+	"userEmail": "first@user.com",
+	"__v": 0,
+	"city": "Kraków",
+	"phoneNr": "213132131",
+	"postalCode": "22-221",
+	"streetAndNr": "Ulica 23"
+},
+{
+	"_id": {
+		"$oid": "63aad783f0d02d45f913a7d8"
+	},
+	"userEmail": "mail@test.pl",
+	"__v": 0,
+	"city": "Niepołomice",
+	"phoneNr": "123678456",
+	"postalCode": "32-005",
+	"streetAndNr": "Zabierzów Bocheński 32"
+}]
+

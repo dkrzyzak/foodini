@@ -1,0 +1,25 @@
+[{
+	"_id": {
+		"$oid": "638a39f059ca9162edb4071a"
+	},
+	"email": "first@user.com",
+	"password": "$2a$05$2sI5TlvmJZUb9eGrcPdYe.NZNnZwldHVCzztQkHg.RTB8hjD4yWNW",
+	"jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoic3Jha2VuQHBpZXJkYWtlbi5wbCIsInBhc3N3b3JkIjoiJDJhJDA1JDJzSTVUbHZtSlpVYjllR3JjUGRZZS5OWk5uWndsZEhWQ3p6dFFrSGcuUlRCOGhqRDR5V05XIn0sImlhdCI6MTY3MDAwMzE4NH0.xkxVPe1hzkQybq01eXbmv4U1LDOxFjiJ6J_-RI03yHM",
+	"created": {
+		"$date": "2022-12-02T17:46:24.707Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "63aad751f3454c914c8e4495"
+	},
+	"email": "mail@test.pl",
+	"password": "$2a$05$UXMJx1tTkNlQPowygVrQeOlYqCAT/h19U/anCfdX8fgxaZWIbGJm6",
+	"jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoibWFpbEB0ZXN0LnBsIiwicGFzc3dvcmQiOiIkMmEkMDUkVVhNSngxdFRrTmxRUG93eWdWclFlT2xZcUNBVC9oMTlVL2FuQ2ZkWDhmZ3hhWldJYkdKbTYifSwiaWF0IjoxNjcyMTQwNjI1fQ.jYyvE6sYxqxwccHsE49BaHMgBx0bL6zyVeKFG2_gA_c",
+	"created": {
+		"$date": "2022-12-27T11:30:25.304Z"
+	},
+	"__v": 0
+}]
+

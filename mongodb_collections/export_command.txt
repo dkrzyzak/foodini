@@ -1,0 +1,7 @@
+.\mongoexport.exe --uri="URI" --collection="restaurants" --out="restaurants.json" --jsonArray --pretty
+
+.\mongoexport.exe --uri="URI" --collection="users" --out="users.json" --jsonArray --pretty
+
+.\mongoexport.exe --uri="URI" --collection="orders" --out="orders.json" --jsonArray --pretty
+
+.\mongoexport.exe --uri="URI" --collection="addresses" --out="addresses.json" --jsonArray --pretty
