@@ -1,6 +1,21 @@
 ## Projekt aplikacji do zamawiania jedzenia na przedmiot Techniki WWW
 
-aby aplikacja działała poprawnie, należy:
+<hr />
+
+## Stack aplikacji - MERN
+
+-  Backend: node.js, express, mongodb (mongoose)
+-  Frontend: React, typescript, Semantic-UI
+
+Dokładna lista używanych bibliotek jest do odnalezienia w `package.json`.
+
+<hr />
+
+## Uruchamianie aplikacji
+
+Aby uruchomić aplikację, musimy wykonać polecenia `npm start` w root folderze (to uruchomi serwer node'a) oraz w folderze `client` (to uruchomi dev server reacta).
+
+Jednak aby aplikacja działała poprawnie, należy najpierw:
 
 0. Mieć zainstalowany pakiet node.js w wersji LTS przynajmniej v14
 1. wykonać komendę `npm ci` w root folderze (instalacja paczek dla serwera node'a)
@@ -38,7 +53,7 @@ Komenda używana do exportu to
 
 dla tego przykładu wyeksportowałem kolekcję `restaurants`, w zasadzie jedyny "must have" do późniejszego zaimportowania, bez którego nasza aplikacja nie będzie działać poprawnie (pozostałe kolekcje to `users`, `orders` oraz `addresses`, które są tworzone on the spot podczas używania aplikacji, ale wyeksportowałem je anyway).
 
-Teraz, aby zaimportować tą kolekcję do lokalnej bazy mongodb, musimy skorzystać z narzędzia `mongoimport`, wykonując następujące polecenie:
+Teraz, aby zaimportować tę kolekcję do lokalnej bazy mongodb, musimy skorzystać z narzędzia `mongoimport`, wykonując następujące polecenie:
 
 ```
 .\mongoimport.exe --host="127.0.0.1" --port=DB_PORT --db="dbname" --collection="restaurants" --file="restaurants.json"
@@ -46,8 +61,8 @@ Teraz, aby zaimportować tą kolekcję do lokalnej bazy mongodb, musimy skorzyst
 
 podmieniając `DB_PORT` na port na którym działa lokalnie mongodb oraz `dbname` na nazwę bazy danych dedykowanej dla mojej aplikacji.
 
-po zaimportowaniu wszystkich baz, należy następnie zmienić w pliku `.env` zmienną `MONGO_URI` na
-`mongodb+srv://[login]:[password]@[127.0.0.1]:[PORT]/[dbname]?retryWrites=true&w=majority`
+po zaimportowaniu wszystkich kolekcji, należy następnie zmienić w pliku `.env` zmienną `MONGO_URI` na
+`mongodb+srv://[login]:[password]@[127.0.0.1]:[DB_PORT]/[dbname]?retryWrites=true&w=majority`
 
 \*\* możliwe że to nie jest idealny URI i trzeba w nim coś jeszcze poprawić, ale szkicowo tak by to mniej więcej wyglądało
 
@@ -70,7 +85,8 @@ Proces zamawiania jedzenia jest w pełni zgodny z bieżącymi standardami skład
 7. przechodzimy przez bramkę płatniczą
 8. zostajemy przekierowani na stronę śledzenia zamówienia
 
-Teraz trochę więcej detali
+### Teraz trochę więcej detali
+
 Ad 1. Jest to sztuczny krok, nieważne jaką podamy lokalizację, dostaniemy taką samą listę restauracji. Wynika to z nieproporcjonalnie dużego nakładu pracy która musiałaby zostać wykonana żeby ta funkcjonalność nie była mockowa, względem efektu który w ten sposób zostałby uzyskany
 
 Ad 2. W aplikacji mamy do dyspozycji 17 różnych restauracji. Dane dla restauracji zostały pozyskane na skutek inspiracji rzeczywistą listą restauracji w jednej z istniejących już usług do zamawiania jedzenia. Są to dane takie jak nazwa restauracji, logo oraz skrócone menu. Zbieżność danych z faktycznymi restauracjami jest czysto przypadkowa.
