@@ -14,13 +14,7 @@ import PaymentModal from './PaymentModal/PaymentModal';
 import useAddress from './useAddress';
 
 const CheckoutPage = () => {
-	const {
-		isBasketEmpty,
-		minimalOrderAmount,
-		getBasketValue,
-		getBasketWithDeliveryValue,
-		basket,
-	} = useBasket();
+	const { isBasketEmpty, minimalOrderAmount, getBasketValue } = useBasket();
 
 	const { isLoggedIn, token } = useAuth();
 
@@ -56,12 +50,6 @@ const CheckoutPage = () => {
 
 	const onPlaceOrder = () => {
 		setPaymentModalOpen(true);
-		// make POST /order with basket and selectedAddress
-		console.log({
-			basket,
-			selectedAddress,
-			basketValue: getBasketWithDeliveryValue(),
-		});
 	};
 
 	return (

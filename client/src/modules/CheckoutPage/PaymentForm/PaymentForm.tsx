@@ -3,7 +3,7 @@ import { Field, Form, Formik } from 'formik';
 import { Button, Icon, Message } from 'semantic-ui-react';
 import * as C from './constants';
 import BlikCodeInput from '../../InputBindings/BlikCodeInput';
-import blikIcon from '../../../assets/blik-logo.png';
+import blikIcon from '../../../assets/logos/blik-logo.png';
 
 interface PaymentFormProps {
 	onPlaceOrder: () => void;
@@ -11,10 +11,6 @@ interface PaymentFormProps {
 
 const PaymentForm = ({ onPlaceOrder }: PaymentFormProps) => {
 	const [shouldValidateOnChange, setValidateOnChange] = useState(false);
-
-	const onSubmit = () => {
-		onPlaceOrder();
-	};
 
 	return (
 		<div>
@@ -25,7 +21,7 @@ const PaymentForm = ({ onPlaceOrder }: PaymentFormProps) => {
 			</Message>
 			<Formik
 				initialValues={C.initialValues}
-				onSubmit={onSubmit}
+				onSubmit={onPlaceOrder}
 				validationSchema={C.paymentFormValidationSchema}
 				validateOnChange={shouldValidateOnChange}
 				validateOnBlur={shouldValidateOnChange}

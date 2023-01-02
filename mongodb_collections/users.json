@@ -4,7 +4,7 @@
 	},
 	"email": "first@user.com",
 	"password": "$2a$05$2sI5TlvmJZUb9eGrcPdYe.NZNnZwldHVCzztQkHg.RTB8hjD4yWNW",
-	"jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoic3Jha2VuQHBpZXJkYWtlbi5wbCIsInBhc3N3b3JkIjoiJDJhJDA1JDJzSTVUbHZtSlpVYjllR3JjUGRZZS5OWk5uWndsZEhWQ3p6dFFrSGcuUlRCOGhqRDR5V05XIn0sImlhdCI6MTY3MDAwMzE4NH0.xkxVPe1hzkQybq01eXbmv4U1LDOxFjiJ6J_-RI03yHM",
+	"jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoiZmlyc3RAdXNlci5jb20iLCJwYXNzd29yZCI6IiQyYSQwNSQyc0k1VGx2bUpaVWI5ZUdyY1BkWWUuTlpOblp3bGRIVkN6enRRa0hnLlJUQjhoakQ0eVdOVyJ9LCJpYXQiOjE2NzI2Njk5MzN9.xgLseiaGc1_ibwr_vrXR__Z21c-G6jBxtKuFqkZZKwg",
 	"created": {
 		"$date": "2022-12-02T17:46:24.707Z"
 	},
