@@ -61,7 +61,6 @@ router.post('/register', async (req, res) => {
 		const newUser = new UserModel({
 			...userObject,
 			jwt,
-			pointsCount: 0,
 		});
 
 		await newUser.save();
