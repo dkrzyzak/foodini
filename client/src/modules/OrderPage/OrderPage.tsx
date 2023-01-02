@@ -20,7 +20,7 @@ const OrderPage = () => {
       refetchInterval: 30000, // 30sec
    });
 
-	const headerImageSrc = useRestaurantImage(order?.restaurantId || '', 'xl', 'avif');
+	const headerImageSrc = useRestaurantImage(order?.restaurantId || '', 'xl');
 
 	if (isLoading || order === undefined) {
 		return <Loader />;

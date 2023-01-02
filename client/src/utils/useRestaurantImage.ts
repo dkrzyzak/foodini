@@ -4,8 +4,8 @@ type ImageVariant = 'sm' | 'xl';
 
 export const getRestaurantImage = async (
 	restaurantId: string,
-	imageVariant: ImageVariant = 'xl',
-	extension = 'jpg'
+	imageVariant: ImageVariant,
+	extension: string
 ) => {
 	const imageSuffix = imageVariant === 'xl' ? '-big' : '';
 

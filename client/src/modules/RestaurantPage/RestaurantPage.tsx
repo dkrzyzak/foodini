@@ -13,7 +13,7 @@ import Basket from '../Basket/Basket';
 
 const RestaurantPage = () => {
 	const { restaurantId = '' } = useParams();
-	const headerImageSrc = useRestaurantImage(restaurantId, 'xl', 'avif');
+	const headerImageSrc = useRestaurantImage(restaurantId, 'xl');
 	const { data: restaurant, isLoading } = useQuery<Restaurant | null>(
 		['restaurant', restaurantId],
 		() => getRestaurantDetails(restaurantId)

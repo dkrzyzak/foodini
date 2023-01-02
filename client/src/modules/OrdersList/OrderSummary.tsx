@@ -17,7 +17,7 @@ const OrderSummaryView = ({
 	restaurantName,
 	orderTotalValue,
 }: OrderSummaryProps) => {
-	const imageUrl = useRestaurantImage(restaurantId, 'sm', 'jpg');
+	const imageUrl = useRestaurantImage(restaurantId, 'sm');
 
 	return (
 		<Link to={orderId} relative='path' state={{ fromOrdersList: true }}>
