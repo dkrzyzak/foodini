@@ -74,6 +74,11 @@ router.post('/register', async (req, res) => {
 	}
 });
 
+router.get('/validateToken', verifyTokenMiddleware, async (req, res) => {
+	// if user got to this point, that means he is verified
+	res.status(200).end();
+});
+
 router.get('/basicData', verifyTokenMiddleware, async (req, res) => {
 	const userEmail = req.verifiedEmail;
 

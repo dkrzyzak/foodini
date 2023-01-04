@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { validateToken } from '../api/authRequests';
 import {
 	getJWT as getTokenFromLS,
 	setJWT as setTokenInLS,
@@ -37,13 +38,24 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 		onResetToken();
 	};
 
+	const validateJWT = async (jwt: string) => {
+		const isValid = await validateToken(jwt);
+
+		if (isValid) {
+			onSetToken(jwt);
+			setIsLoggedIn(true);
+		} else {
+			onLogout();
+		}
+	};
+
 	useEffect(() => {
 		const jwt = getTokenFromLS();
 
 		if (jwt) {
-			onSetToken(jwt);
-			setIsLoggedIn(true);
+			validateJWT(jwt);
 		}
+		// eslint-disable-next-line
 	}, []);
 
 	const contextValue: IAuthContext = {

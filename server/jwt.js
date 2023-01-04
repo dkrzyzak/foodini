@@ -32,14 +32,17 @@ const verifyTokenMiddleware = async (req, res, next) => {
 
 	const bearerToken = bearerHeader.split(' ')[1];
 
-	const verificationStatus = await verifyJWT(bearerToken, 'secretKey');
-	if (verificationStatus === false) {
+	try {
+		const verificationStatus = await verifyJWT(bearerToken, 'secretKey');
+		if (verificationStatus === false) {
+			return res.sendStatus(403);
+		}
+
+		req.verifiedEmail = verificationStatus.user.email;
+		next();
+	} catch {
 		return res.sendStatus(403);
 	}
-
-	req.verifiedEmail = verificationStatus.user.email;
-
-	next();
 };
 
 module.exports = {

@@ -93,6 +93,20 @@ export const loginUser = async (
 	};
 };
 
+export const validateToken = async (token: string): Promise<boolean> => {
+	try {
+		const { status } = await axios.get('/auth/validateToken', {
+			headers: {
+				Authorization: token ? `Bearer ${token}` : '',
+			},
+		});
+
+		return status === 200;
+	} catch {
+		return false;
+	}
+};
+
 export const getBasicData = async (token: string): Promise<UserData | undefined> => {
 	try {
 		const { data } = await axios.get<UserData>('/auth/basicData', {
