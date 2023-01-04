@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
 import { Dimmer, Divider, Header, Icon, Loader } from 'semantic-ui-react';
@@ -23,6 +23,10 @@ const RestaurantsList = () => {
 		setSortBy(newValue);
 		saveSortingToLS(newValue);
 	};
+
+	useEffect(() => {
+		document.title = 'Foodini - zamów teraz';
+	}, []);
 
 	return (
 		<P.RestaurantsListWrapper>

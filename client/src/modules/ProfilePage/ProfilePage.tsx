@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { Link, Navigate } from 'react-router-dom';
 import { Icon, Loader, Statistic, Table } from 'semantic-ui-react';
@@ -12,6 +12,10 @@ const ProfilePage = () => {
 	const { data: profileData, isLoading } = useQuery(['profileData', token], () =>
 		getBasicData(token)
 	);
+
+	useEffect(() => {
+		document.title = 'Foodini - twoje konto';
+	}, []);
 
 	if (isLoading) {
 		return <Loader />;

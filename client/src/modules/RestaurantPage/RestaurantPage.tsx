@@ -28,6 +28,10 @@ const RestaurantPage = () => {
 				restaurant.minimalOrderAmount
 			);
 		}
+
+		document.title = restaurant?.fullName
+			? `Zamów z ${restaurant?.fullName}`
+			: 'Foodini - zamów teraz';
 		// eslint-disable-next-line
 	}, [restaurant]);
 

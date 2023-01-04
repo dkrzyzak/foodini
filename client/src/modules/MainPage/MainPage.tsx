@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Input } from 'semantic-ui-react';
 import { useNavigate } from 'react-router-dom';
 import * as P from './parts';
@@ -29,6 +29,10 @@ const MainPage = () => {
 			},
 		});
 	};
+
+	useEffect(() => {
+		document.title = 'Foodini - strona główna';
+	}, []);
 
 	return (
 		<P.MainPageWrapper>

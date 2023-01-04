@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { Link, Navigate } from 'react-router-dom';
 import { Button, Header, Icon, Loader, Segment } from 'semantic-ui-react';
@@ -7,13 +7,15 @@ import { useAuth } from '../../contexts/useAuth';
 import OrderSummaryView from './OrderSummary';
 import * as P from './parts';
 
-interface OrdersListProps {}
-
-const OrdersList = (props: OrdersListProps) => {
+const OrdersList = () => {
 	const { token, isLoggedIn } = useAuth();
 
 	// prettier-ignore
 	const { data: orders, isLoading } = useQuery(['orders', token], () => getOrders(token));
+
+	useEffect(() => {
+		document.title = 'Foodini - twoje zamówienia';
+	}, []);
 
 	if (orders === null || !isLoggedIn) {
 		return <Navigate to='/' />;
