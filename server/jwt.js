@@ -11,10 +11,10 @@ const createJWT = (user, secretKey = 'secretKey') =>
 
 const verifyJWT = (token, secretKey) =>
 	new Promise((resolve, reject) => {
-		jwt.verify(token, secretKey, (err, authData) => {
+		jwt.verify(token, secretKey, (err, userData) => {
 			if (err) return reject(false);
 
-			resolve(authData);
+			resolve(userData);
 		});
 	});
 

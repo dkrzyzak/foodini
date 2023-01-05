@@ -15,7 +15,6 @@ const userSchema = new Schema({
 	email: String,
 	password: String,
 	created: { type: Date, default: Date.now },
-	jwt: String,
 });
 
 const UserModel = mongoose.model('users', userSchema);

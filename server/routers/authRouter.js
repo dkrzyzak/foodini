@@ -24,10 +24,12 @@ router.post('/login', async (req, res) => {
 			return res.status(401).end();
 		}
 
+		const jwt = await createJWT({ email });
+
 		return res
 			.status(200)
 			.json({
-				token: userQueryResult.jwt,
+				token: jwt,
 			})
 			.end();
 	} catch (e) {
@@ -51,16 +53,11 @@ router.post('/register', async (req, res) => {
 
 		const hashedPassword = await hashPassword(plainTextPassword);
 
-		const userObject = {
-			email,
-			password: hashedPassword,
-		};
-
-		const jwt = await createJWT(userObject);
+		const jwt = await createJWT({ email });
 
 		const newUser = new UserModel({
-			...userObject,
-			jwt,
+			email,
+			password: hashedPassword,
 		});
 
 		await newUser.save();
